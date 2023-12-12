@@ -97,9 +97,9 @@ const Login = () => {
         <form onSubmit={handleSubmit} className=" text-center w-full  py-16">
           <p>
             {msg !== "" ? (
-              <span className="text-green-500 text-2xl">{msg}</span>
+              <span className="text-green-700 text-2xl">{msg}</span>
             ) : (
-              <span className="text-red-500 text-2xl">{error}</span>
+              <span className="text-red-700 text-2xl">{error}</span>
             )}
           </p>
           <div>

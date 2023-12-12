@@ -136,9 +136,9 @@ const Register = () => {
         <form onSubmit={handleSubmit} className=" text-center w-full  pt-16">
           <p>
             {msg !== "" ? (
-              <span className="text-green-500 text-2xl">{msg}</span>
+              <span className="text-green-700 text-2xl">{msg}</span>
             ) : (
-              <span className="text-red-500 text-md font-semibold text-xl">
+              <span className="text-red-700 text-md font-semibold text-xl">
                 {error}
               </span>
             )}

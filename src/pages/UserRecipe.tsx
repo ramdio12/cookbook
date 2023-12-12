@@ -11,11 +11,11 @@ const UserRecipe = () => {
   const [ingredients, setingredients] = useState([]);
   const [instructions, setInstructions] = useState(null);
   const [photo, setPhoto] = useState(null);
+  const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const { click, toggle, updatedPhoto, preview, handleFileChange } =
     useContext(UserRecipeContext);
   const { id } = useParams();
-  console.log(preview);
 
   useEffect(() => {
     getMyrecipe();
@@ -56,11 +56,30 @@ const UserRecipe = () => {
         }
       )
       .then((response) => {
-        if (response.data.status === "success") {
-          setMsg(response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+        const status = response.data.status;
+        const message = response.data.message;
+
+        switch (status) {
+          case "large_file":
+            setError(message);
+            break;
+          case "incompatible":
+            setError(message);
+            break;
+          case "invalid":
+            setError(message);
+            break;
+          case "failed":
+            setError(message);
+            break;
+          case "success":
+            setMsg(response.data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+            break;
+          default:
+            break;
         }
       });
   };
@@ -91,7 +110,18 @@ const UserRecipe = () => {
               <div>
                 {click ? (
                   <div className="pt-2">
-                    {msg !== "" ? <p>{msg}</p> : <p></p>}
+                    <div className=" py-4">
+                      {msg !== "" ? (
+                        <p className=" text-green-700 font-medium text-xl">
+                          {msg}
+                        </p>
+                      ) : (
+                        <p className=" text-red-700 font-medium text-xl">
+                          {error}
+                        </p>
+                      )}
+                    </div>
+
                     <input
                       type="file"
                       name="photo"
@@ -129,7 +159,6 @@ const UserRecipe = () => {
                 INGREDIENTS:
               </h3>
 
-              {/* <div>{ingredients}</div> */}
               {ingredients.map((ingredient, index) => (
                 <li key={index} className="ml-4">
                   {ingredient}

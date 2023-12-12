@@ -50,14 +50,30 @@ const Profile = () => {
         }
       )
       .then((response) => {
-        console.log(response);
-        if (response.data.status === "large_file") {
-          setError(response.data.message);
-        } else if (response.data.status === "success") {
-          setMsg(response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+        const status = response.data.status;
+        const message = response.data.message;
+
+        switch (status) {
+          case "large_file":
+            setError(message);
+            break;
+          case "incompatible":
+            setError(message);
+            break;
+          case "invalid":
+            setError(message);
+            break;
+          case "failed":
+            setError(message);
+            break;
+          case "success":
+            setMsg(response.data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+            break;
+          default:
+            break;
         }
       });
   };
@@ -86,7 +102,7 @@ const Profile = () => {
             {msg !== "" ? (
               <p className="text-green-700 bg-green-200 mb-2">{msg}</p>
             ) : (
-              <p className=" mx-autotext-red-700 bg-red-200 mb-2 w-28">
+              <p className=" mx-auto text-red-700 bg-red-200 mb-2 w-full">
                 {error}
               </p>
             )}
