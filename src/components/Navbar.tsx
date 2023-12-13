@@ -38,7 +38,14 @@ const Navbar = () => {
   return (
     <header className="flex items-center justify-between bg-orange-800 w-full p-4 text-white font-bold relative">
       <div className="flex justify-center items-center">
-        <img src={logo} alt="logo" width={50} height={120} />
+        <img
+          src={logo}
+          alt="logo"
+          width={50}
+          height={120}
+          onClick={() => navigate("/dashboard")}
+          className=" cursor-pointer"
+        />
         <span className=" font-mono text-lg">CookBook</span>
       </div>
 

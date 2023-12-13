@@ -11,6 +11,7 @@ import EditUserRecipe from "./pages/EditUserRecipe";
 import ContextProvider from "./context/ContextProvider";
 import EditUserProfile from "./pages/EditUserProfile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const client = new QueryClient();
@@ -51,6 +52,7 @@ function App() {
                 path="/userprofile/:id/edituser"
                 element={<Protected Component={EditUserProfile} />}
               />
+              <Route path="*" element={<Protected Component={NotFound} />} />
             </Routes>
           </Router>
         </ContextProvider>
