@@ -83,7 +83,7 @@ const UserRecipes = () => {
                         className="border-2 border-solid  divide-black">
                         <td className="py-4 text-lg md:text-2xl">{title}</td>
                         <td className="py-4 md:text-xl">{created_at}</td>
-                        <td className="flex p-4 gap-4 ">
+                        <td className="flex pt-2 pr-2 gap-2 ">
                           <button
                             onClick={() => navigate(`/userrecipe/${id}/edit`)}
                             className=" p-2 w-full bg-sky-600  text-white rounded-lg ">

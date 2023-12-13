@@ -132,6 +132,12 @@ const EditUserProfile = () => {
               value="SUBMIT"
               className="text-md bg-red-600 px-6 py-2 text-white rounded-md cursor-pointer"
             />
+            <input
+              type="button"
+              value="CANCEL"
+              onClick={() => navigate("/userrecipes")}
+              className="text-md md:hidden bg-blue-600 ml-2 px-6 py-2 text-white rounded-md cursor-pointer"
+            />
           </form>
         </div>
       </div>
