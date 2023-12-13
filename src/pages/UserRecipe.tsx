@@ -58,7 +58,6 @@ const UserRecipe = () => {
       .then((response) => {
         const status = response.data.status;
         const message = response.data.message;
-
         switch (status) {
           case "large_file":
             setError(message);

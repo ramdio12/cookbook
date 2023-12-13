@@ -1,8 +1,8 @@
 import Navbar from "../components/Navbar";
 import RecipeCard from "../components/RecipeCard";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import loading from "../assets/loading.png";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export type RecipeProps = {
   id: number;
@@ -14,19 +14,7 @@ export type RecipeProps = {
 };
 
 const Dashboard = () => {
-  const {
-    data: recipes,
-    error,
-    isLoading,
-  }: any = useQuery({
-    queryKey: ["recipe"],
-    queryFn: async () =>
-      await axios
-        .get(`https://weebmarclone.000webhostapp.com/get_all_user_recipes.php`)
-        .then((response) => {
-          return response.data;
-        }),
-  });
+  const { recipes, error, isLoading } = useContext(UserContext);
 
   if (error) {
     return (

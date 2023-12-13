@@ -37,12 +37,19 @@
 
 - It is only a form where a user can add recipes to be displayed on home page
 
+## Challenges
+
+    - Since PUT and DELETE METHOD is not supported on 000webhost for non premium users,  I use Axios.post for the update method. And as for the delete method , I replaced it with PDF export for now .
+    - Fetching with axios.get and useEffect could be troublesome sometimes, so I used useQuery at the homepage to fetch all data. With useQuery, I was able to fetch all fresh data without refreshing the homepage.
+
 ## Features to be added in the future or needed to improve
 
-- DELETE : PUT and DELETE METHOD is not supported on 000webhost for non premium users, so as for the update method I use POST Method. And for the delete method , I replaced it with PDF export for now.
+- DELETE button
 - Password changer
 - UI of my project
-- Strong validation and security for Login and Registration
+- More stronger validation and security for Login and Registration
+- search bar and button
+- filtering for faster search
 
 <br>
 <br>

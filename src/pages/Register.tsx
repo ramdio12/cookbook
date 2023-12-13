@@ -43,7 +43,7 @@ const Register = () => {
     const { name, username, email, password }: any = inputs;
 
     if (!name && !username && !email && !password) {
-      setError("Some of the fields are not filled");
+      setError("All fields must be filled");
     } else {
       const formData = new FormData();
       formData.append("name", name);
@@ -53,18 +53,16 @@ const Register = () => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response);
-          console.log(response);
-          if (response.data.status === "empty") {
+          const status = response.data.status;
+          const message = response.data.message;
+          if (status === "empty") {
             setError("some fields needs to be filled");
-          } else if (response.data.status === "password_error") {
-            setError(response.data.message);
-          } else if (response.data.status === "username_error") {
-            setError(response.data.message);
+          } else if (status === "password_error") {
+            setError(message);
+          } else if (status === "username_error") {
+            setError(message);
           } else {
-            setMsg(response.data.message);
-            console.log(response);
-            console.log(response.data.message);
+            setMsg(message);
             setTimeout(() => {
               navigate("/");
             }, 5000);
@@ -89,7 +87,6 @@ const Register = () => {
         if (response.data.status === "duplicate") {
           setError(response.data.message);
           setIsDuplicate(true);
-          console.log(response.data.status);
         } else {
           setIsDuplicate(false);
         }
@@ -109,7 +106,6 @@ const Register = () => {
         if (response.data.status === "duplicate") {
           setError(response.data.message);
           setIsDuplicate(true);
-          console.log(response.data.status);
         } else {
           setIsDuplicate(false);
         }

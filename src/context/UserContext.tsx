@@ -5,6 +5,9 @@ type UserRecipeProps = {
   updatedPhoto: string;
   preview: string;
   handleFileChange: (e: any) => void;
+  recipes: never[];
+  error: Error;
+  isLoading: boolean;
 };
 const UserRecipeContext = createContext({} as UserRecipeProps);
 
