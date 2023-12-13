@@ -95,7 +95,7 @@ const UserRecipe = () => {
             </div>
             <div>
               <noscript>md:w-3/6</noscript>
-              <div className=" w-96 mx-auto">
+              <div className=" w-5/6 md:w-96 mx-auto">
                 {photo && (
                   <img
                     src={
