@@ -94,7 +94,8 @@ const UserRecipe = () => {
               <h1 className="text-4xl font-bold mb-4">{title}</h1>
             </div>
             <div>
-              <div className=" w-3/6 mx-auto">
+              <noscript>md:w-3/6</noscript>
+              <div className=" w-96 mx-auto">
                 {photo && (
                   <img
                     src={
