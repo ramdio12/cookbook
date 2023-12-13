@@ -29,7 +29,12 @@ const Dashboard = () => {
   });
 
   if (error) {
-    return <h1>Error man</h1>;
+    return (
+      <>
+        <Navbar />
+        <h1 className="text-center text-2xl">Houston, We got a problem!!!</h1>
+      </>
+    );
   }
 
   return (

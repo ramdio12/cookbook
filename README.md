@@ -44,6 +44,42 @@
 - UI of my project
 - Strong validation and security for Login and Registration
 
-###
+<br>
+<br>
+<br>
+
+## Login
+
+![Alt text](/screenshots/login.JPG)<br>
+
+## Register
+
+![Alt text](/screenshots/register.JPG)<br>
+
+## Home Page
+
+![Alt text](/screenshots/homepage.JPG)<br>
+
+## User's Recipe List and Profile
+
+![Alt text](/screenshots/users_recipelist_and_profile.JPG)<br>
+
+## Update Profile
+
+![Alt text](/screenshots/update_profile.JPG)<br>
+
+## Update Recipe
+
+![Alt text](/screenshots/update_recipe.JPG)<br>
+
+## Add Recipe
 
 ![Alt text](/screenshots/add_recipe.JPG)<br>
+
+## Before Exporting Recipe to PDF
+
+![Alt text](/screenshots/before_saving_recipe.JPG)<br>
+
+## After Exporting
+
+![Alt text](/screenshots/after_saving_recipe.JPG)<br>

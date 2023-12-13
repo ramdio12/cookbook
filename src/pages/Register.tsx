@@ -123,9 +123,11 @@ const Register = () => {
         style={{
           backgroundImage: `url(${wallpaper})`,
         }}>
-        <h1 className="absolute text-white font-mono font-black text-6xl w-68 text-center right-32 top-28">
-          Everyone can COOK
-        </h1>
+        <div className="absolute text-center right-0 top-0 left-0 bottom-0 flex justify-center items-center">
+          <h1 className=" text-white  font-serif text-6xl w-3/4 drop-shadow-lg mb-52">
+            "Everyone can COOK"
+          </h1>
+        </div>
       </div>
       <div className="basis-1/2 bg-gray-300 min-h-screen flex flex-col items-center justify-center w-full">
         <div className="flex flex-col items-center justify-center">

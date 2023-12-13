@@ -81,19 +81,19 @@ const UserRecipes = () => {
                       <tr
                         key={id}
                         className="border-2 border-solid  divide-black">
-                        <td className="py-4 text-lg">{title}</td>
-                        <td className="py-4">{created_at}</td>
+                        <td className="py-4 text-lg md:text-2xl">{title}</td>
+                        <td className="py-4 md:text-xl">{created_at}</td>
                         <td className="flex p-4 gap-4 ">
                           <button
                             onClick={() => navigate(`/userrecipe/${id}/edit`)}
-                            className=" py-2 w-full bg-sky-600  text-white rounded-lg">
+                            className=" p-2 w-full bg-sky-600  text-white rounded-lg ">
                             <FontAwesomeIcon icon={faPenToSquare} /> Edit
                           </button>
                           <button
                             onClick={() =>
                               navigate(`/userrecipe/${id}/myrecipe`)
                             }
-                            className=" py-2 w-full bg-green-500  text-white rounded-lg">
+                            className=" p-2 w-full bg-green-500  text-white rounded-lg whitespace-nowrap">
                             <FontAwesomeIcon icon={faEye} /> Show
                           </button>
                         </td>
@@ -102,7 +102,7 @@ const UserRecipes = () => {
                   </tbody>
                 </table>
                 <ul className="flex mt-6 ">
-                  <li className="px-2">
+                  <li className="px-2 text-xl">
                     <button onClick={previousPage}>Previous</button>
                   </li>
                   {numbers.map((n, id) => (
@@ -114,7 +114,7 @@ const UserRecipes = () => {
                       <button onClick={() => changeCurrentPage(n)}>{n}</button>
                     </li>
                   ))}
-                  <li className="px-2">
+                  <li className="px-2 text-xl">
                     <button onClick={nextPage}>Next</button>
                   </li>
                 </ul>

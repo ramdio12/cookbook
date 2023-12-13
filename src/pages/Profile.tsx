@@ -80,9 +80,9 @@ const Profile = () => {
 
   return (
     <>
-      <div className="text-center bg-neutral-900 text-white md:w-96 pt-8">
+      <div className="text-center bg-neutral-900 text-white md:w-96 pt-4">
         <h1 className="text-4xl mb-4">My Profile</h1>
-        <div className="h-1/5  mx-auto mb-8 overflow-visible">
+        <div className="h-1/5  mx-auto mb-4 overflow-visible">
           {photo ? (
             <img
               src={
@@ -138,7 +138,7 @@ const Profile = () => {
           </div>
         )}
 
-        <div>
+        <div className="pb-8">
           <div className="mb-4">
             <h2 className="text-xl">Name</h2>
             <p className="text-xl">{myName?.join(" ")}</p>
