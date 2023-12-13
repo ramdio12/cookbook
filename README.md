@@ -42,3 +42,8 @@
 - DELETE : PUT and DELETE METHOD is not supported on 000webhost for non premium users, so as for the update method I use POST Method. And for the delete method , I replaced it with PDF export for now.
 - Password changer
 - UI of my project
+- Strong validation and security for Login and Registration
+
+###
+
+![Alt text](/screenshots/add_recipe.JPG)<br>
