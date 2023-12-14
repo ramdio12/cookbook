@@ -16,7 +16,7 @@
 
 - This project is purposely for food enthusiasts and those who wanted to learn how to cook. Anyone can share their homemade recipes. Not only the user can create a recipe note but they can also download other user's recipe as well in PDF
 
-## ALGORITHM
+## INSTRUCTIONS
 
 - The user need to register first, and then login
 - When the user logged in they can either create a recipe or check other users recipe
