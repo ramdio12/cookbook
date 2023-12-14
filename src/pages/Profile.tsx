@@ -80,7 +80,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="text-center bg-neutral-900 text-white md:w-96 pt-4">
+      <div className="text-center bg-neutral-900 text-white md:w-96 pt-4 min-h-screen">
         <h1 className="text-4xl mb-4">My Profile</h1>
         <div className="h-1/5  mx-auto mb-4 overflow-visible">
           {photo ? (
