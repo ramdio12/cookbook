@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import pic from "../assets/preview.jpg";
 import UserRecipeContext from "../context/UserContext";
@@ -8,19 +8,26 @@ import UserContext from "../context/UserContext";
 const Profile = () => {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
-  const {
-    click,
-    toggle,
-    updatedPhoto,
-    preview,
-    handleFileChange,
-    userData,
-    UserFetchLoading,
-  } = useContext(UserRecipeContext);
+  const [userData, setUserData] = useState({});
+  const { click, toggle, updatedPhoto, preview, handleFileChange } =
+    useContext(UserRecipeContext);
   const navigate = useNavigate();
   const { userId }: any = useContext(UserContext);
-  const { name, username, email, photo } = userData;
+  const { name, username, email, photo }: any = userData;
   const myName = name?.split(" ");
+
+  useEffect(() => {
+    const uid: any = localStorage.getItem("id");
+    getMyData(uid);
+  }, []);
+
+  async function getMyData(id: number) {
+    await axios
+      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${id}`)
+      .then(function (response) {
+        setUserData(response.data);
+      });
+  }
 
   for (let i = 0; i < myName?.length; i++) {
     myName[i] = myName[i][0].toUpperCase() + myName[i]?.substr(1);
@@ -130,25 +137,21 @@ const Profile = () => {
           </div>
         )}
 
-        {UserFetchLoading ? (
-          <h1>Getting Your Data. Please wait...</h1>
-        ) : (
-          <div className="pb-8">
-            <div className="mb-4">
-              <h2 className="text-xl">Name</h2>
-              <p className="text-xl">{myName?.join(" ")}</p>
-            </div>
-            <div className="mb-4">
-              <h2 className="text-xl">Username</h2>
-
-              <p className="text-xl">@{username}</p>
-            </div>
-            <div className="mb-2">
-              <h2 className="text-xl">Email</h2>
-              <p className="text-xl">{email}</p>
-            </div>
+        <div className="pb-8">
+          <div className="mb-4">
+            <h2 className="text-xl">Name</h2>
+            <p className="text-xl">{myName?.join(" ")}</p>
           </div>
-        )}
+          <div className="mb-4">
+            <h2 className="text-xl">Username</h2>
+
+            <p className="text-xl">@{username}</p>
+          </div>
+          <div className="mb-2">
+            <h2 className="text-xl">Email</h2>
+            <p className="text-xl">{email}</p>
+          </div>
+        </div>
       </div>
     </>
   );

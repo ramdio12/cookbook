@@ -8,8 +8,6 @@ type UserProps = {
   recipes: never[];
   error: Error;
   recipesFetchLoading: boolean;
-  UserFetchLoading: boolean;
-  userData: any;
   userId: any;
 };
 const UserContext = createContext({} as UserProps);
