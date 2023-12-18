@@ -1,46 +1,38 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import pic from "../assets/preview.jpg";
 import UserRecipeContext from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const Profile = () => {
-  const [myData, setMyData]: any = useState({});
-  const { name, username, email, photo } = myData;
-  const [id, setId]: any = useState(null);
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
-  const myName = name?.split(" ");
-  const { click, toggle, updatedPhoto, preview, handleFileChange } =
-    useContext(UserRecipeContext);
-
+  const {
+    click,
+    toggle,
+    updatedPhoto,
+    preview,
+    handleFileChange,
+    userData,
+    UserFetchLoading,
+  } = useContext(UserRecipeContext);
   const navigate = useNavigate();
+  const { userId }: any = useContext(UserContext);
+  const { name, username, email, photo } = userData;
+  const myName = name?.split(" ");
 
   for (let i = 0; i < myName?.length; i++) {
     myName[i] = myName[i][0].toUpperCase() + myName[i]?.substr(1);
   }
 
-  useEffect(() => {
-    const uid: any = localStorage.getItem("id");
-    setId(uid);
-    getMyData(uid);
-  }, []);
-
-  async function getMyData(userId: number) {
-    await axios
-      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${userId}`)
-      .then(function (response) {
-        setMyData(response.data);
-      });
-  }
-
   const editProfilePhoto = async () => {
     const formData = new FormData();
-    formData.set("id", id);
+    formData.set("id", userId);
     formData.set("photo", updatedPhoto);
     await axios
       .post(
-        `https://weebmarclone.000webhostapp.com/update_myprofile_photo.php/${id}`,
+        `https://weebmarclone.000webhostapp.com/update_myprofile_photo.php/${userId}`,
         formData,
         {
           headers: {
@@ -132,26 +124,31 @@ const Profile = () => {
             </button>
             <button
               className="rounded-md bg-green-500 px-4 py-1"
-              onClick={() => navigate(`/userprofile/${id}/edituser`)}>
+              onClick={() => navigate(`/userprofile/${userId}/edituser`)}>
               Edit Profile
             </button>
           </div>
         )}
 
-        <div className="pb-8">
-          <div className="mb-4">
-            <h2 className="text-xl">Name</h2>
-            <p className="text-xl">{myName?.join(" ")}</p>
+        {UserFetchLoading ? (
+          <h1>Getting Your Data. Please wait...</h1>
+        ) : (
+          <div className="pb-8">
+            <div className="mb-4">
+              <h2 className="text-xl">Name</h2>
+              <p className="text-xl">{myName?.join(" ")}</p>
+            </div>
+            <div className="mb-4">
+              <h2 className="text-xl">Username</h2>
+
+              <p className="text-xl">@{username}</p>
+            </div>
+            <div className="mb-2">
+              <h2 className="text-xl">Email</h2>
+              <p className="text-xl">{email}</p>
+            </div>
           </div>
-          <div className="mb-4">
-            <h2 className="text-xl">Username</h2>
-            <p className="text-xl">@{username}</p>
-          </div>
-          <div className="mb-2">
-            <h2 className="text-xl">Email</h2>
-            <p className="text-xl">{email}</p>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

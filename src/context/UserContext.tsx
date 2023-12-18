@@ -1,5 +1,5 @@
 import { createContext } from "react";
-type UserRecipeProps = {
+type UserProps = {
   click: boolean;
   toggle: () => void;
   updatedPhoto: string;
@@ -7,8 +7,11 @@ type UserRecipeProps = {
   handleFileChange: (e: any) => void;
   recipes: never[];
   error: Error;
-  isLoading: boolean;
+  recipesFetchLoading: boolean;
+  UserFetchLoading: boolean;
+  userData: any;
+  userId: any;
 };
-const UserRecipeContext = createContext({} as UserRecipeProps);
+const UserContext = createContext({} as UserProps);
 
-export default UserRecipeContext;
+export default UserContext;

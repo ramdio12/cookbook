@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import wallpaper from "../assets/bg-3.jpg";
 import logo from "../assets/cookbook_logo.png";
@@ -28,7 +28,7 @@ const Login = () => {
     }, 3000);
   }, [msg]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     if (value === "") {
@@ -39,7 +39,7 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = "https://weebmarclone.000webhostapp.com/login.php";
     const { username, password }: any = inputs;

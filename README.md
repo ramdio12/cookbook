@@ -49,7 +49,8 @@
 - UI of my project
 - More stronger validation and security for Login and Registration
 - search bar and button
-- filtering for faster search
+- filtering for faster search (ex: by category or by date or by title)
+- Group by category (Example: pork,beef,fish,chicken or breakfast, lunch, snack, and dinner)
 
 <br>
 <br>

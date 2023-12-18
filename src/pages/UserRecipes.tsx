@@ -52,12 +52,6 @@ const UserRecipes = () => {
     <>
       <Navbar />
       <div className=" relative md:flex">
-        {/* <button
-          className="absolute bg-blue-600 text-white top-2 right-2 px-6 py-1 rounded-md"
-          onClick={() => navigate("/addrecipe")}>
-          <span className="text-xl">+</span> Add Recipe
-        </button> */}
-
         <Profile />
 
         <div className="w-full ">

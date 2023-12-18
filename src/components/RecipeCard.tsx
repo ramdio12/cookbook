@@ -17,10 +17,10 @@ const RecipeCard = ({
 
   return (
     <div
-      title="Click to see further details"
-      className=" w-72 h-4/5 overflow-hidden rounded-md cursor-pointer hover:scale-105 duration-500 ease-in-out"
+      title={`View ${title}`}
+      className=" md:w-72 md:h-84 overflow-hidden rounded-md cursor-pointer hover:scale-105 duration-500 ease-in-out"
       onClick={() => navigate(`/recipe/${id}/recipe`)}>
-      <div className=" w-72 h-52">
+      <div className=" md:w-72 md:h-56">
         <img
           src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
           className="w-full h-full"

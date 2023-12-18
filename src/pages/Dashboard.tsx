@@ -3,6 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 import loading from "../assets/loading.png";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
+import ScrollToTop from "../components/ScrollToTop";
 
 export type RecipeProps = {
   id: number;
@@ -14,7 +15,7 @@ export type RecipeProps = {
 };
 
 const Dashboard = () => {
-  const { recipes, error, isLoading } = useContext(UserContext);
+  const { recipes, error, recipesFetchLoading } = useContext(UserContext);
 
   if (error) {
     return (
@@ -29,7 +30,7 @@ const Dashboard = () => {
     <>
       <Navbar />
 
-      {isLoading ? (
+      {recipesFetchLoading ? (
         <div className="flex flex-col items-center justify-center w-full min-h-screen">
           <h1 className=" text-4xl font-extrabold">
             Fetching All Recipes. Please Wait...{" "}
@@ -51,6 +52,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
+      <ScrollToTop />
     </>
   );
 };

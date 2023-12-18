@@ -27,7 +27,7 @@ const ScrollToTop = () => {
   return (
     <div>
       <button
-        className="scroll-btn"
+        className="fixed right-4 bottom-4 h-8 w-6 bg-red-600 text-white "
         style={{ display: visible ? "inline" : "none" }}
         onClick={scrollTop}>
         <FontAwesomeIcon icon={faArrowUp} />

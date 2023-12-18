@@ -8,6 +8,9 @@ export default {
     extend: {
       rotate: {
         '360': '360deg',
+      },
+      spacing: {
+        '84': '21rem',
       }
     },
   },

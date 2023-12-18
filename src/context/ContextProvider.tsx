@@ -1,5 +1,5 @@
-import { ReactNode, useState } from "react";
-import UserRecipeContext from "./UserContext";
+import { ReactNode, useState, useEffect } from "react";
+import UserContext from "./UserContext";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,12 +11,35 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [click, setClick] = useState(false);
   const [updatedPhoto, setUpdatedPhoto] = useState("");
   const [preview, setPreview] = useState("");
+  const [userId, setUserId] = useState(null);
+  const [userData, setUserData] = useState({});
+
+  // Fetch the user's ID to use it everywhere
+  useEffect(() => {
+    const uid: any = localStorage.getItem("id");
+    setUserId(uid);
+  }, []);
+
+  // Fetching all data of a user to print it on the profile component
+
+  const { isLoading: UserFetchLoading } = useQuery({
+    queryKey: ["userdata", { userId }],
+    queryFn: () => getMyData(userId),
+  });
+
+  async function getMyData(id: any) {
+    await axios
+      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${id}`)
+      .then(function (response) {
+        setUserData(response.data);
+      });
+  }
 
   // fetching all the users recipes on the homepage
   const {
     data: recipes,
     error,
-    isLoading,
+    isLoading: recipesFetchLoading,
   }: any = useQuery({
     queryKey: ["recipe"],
     queryFn: async () =>
@@ -40,7 +63,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const toggle = () => setClick((prev) => !prev);
 
   return (
-    <UserRecipeContext.Provider
+    <UserContext.Provider
       value={{
         click,
         toggle,
@@ -49,10 +72,13 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         handleFileChange,
         recipes,
         error,
-        isLoading,
+        recipesFetchLoading,
+        UserFetchLoading,
+        userData,
+        userId,
       }}>
       {children}
-    </UserRecipeContext.Provider>
+    </UserContext.Provider>
   );
 };
 

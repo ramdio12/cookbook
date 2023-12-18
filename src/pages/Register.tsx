@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import wallpaper from "../assets/bg-3.jpg";
@@ -25,7 +25,7 @@ const Register = () => {
     }, 3000);
   }, [msg]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     if (value === "") {
@@ -36,7 +36,7 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisable(true);
     const url = "https://weebmarclone.000webhostapp.com/register.php";
