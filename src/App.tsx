@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Recipe from "./pages/Recipe";
@@ -20,41 +20,39 @@ function App() {
     <>
       <QueryClientProvider client={client}>
         <ContextProvider>
-          <Router>
-            <Routes>
-              <Route index element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/dashboard"
-                element={<Protected Component={Dashboard} />}
-              />
-              <Route
-                path="/recipe/:id/recipe"
-                element={<Protected Component={Recipe} />}
-              />
-              <Route
-                path="/addrecipe"
-                element={<Protected Component={AddRecipe} />}
-              />
-              <Route
-                path="/userrecipes"
-                element={<Protected Component={UserRecipes} />}
-              />
-              <Route
-                path="/userrecipe/:id/myrecipe"
-                element={<Protected Component={UserRecipe} />}
-              />
-              <Route
-                path="/userrecipe/:id/edit"
-                element={<Protected Component={EditUserRecipe} />}
-              />
-              <Route
-                path="/userprofile/:id/edituser"
-                element={<Protected Component={EditUserProfile} />}
-              />
-              <Route path="*" element={<Protected Component={NotFound} />} />
-            </Routes>
-          </Router>
+          <Routes>
+            <Route index element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/dashboard"
+              element={<Protected Component={Dashboard} />}
+            />
+            <Route
+              path="/recipe/:id/recipe"
+              element={<Protected Component={Recipe} />}
+            />
+            <Route
+              path="/addrecipe"
+              element={<Protected Component={AddRecipe} />}
+            />
+            <Route
+              path="/userrecipes"
+              element={<Protected Component={UserRecipes} />}
+            />
+            <Route
+              path="/userrecipe/:id/myrecipe"
+              element={<Protected Component={UserRecipe} />}
+            />
+            <Route
+              path="/userrecipe/:id/edit"
+              element={<Protected Component={EditUserRecipe} />}
+            />
+            <Route
+              path="/userprofile/:id/edituser"
+              element={<Protected Component={EditUserProfile} />}
+            />
+            <Route path="*" element={<Protected Component={NotFound} />} />
+          </Routes>
         </ContextProvider>
       </QueryClientProvider>
     </>

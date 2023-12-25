@@ -17,13 +17,12 @@ const Profile = () => {
   const myName = name?.split(" ");
 
   useEffect(() => {
-    const uid: any = localStorage.getItem("id");
-    getMyData(uid);
-  }, []);
+    getMyData();
+  });
 
-  async function getMyData(id: number) {
+  async function getMyData() {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${id}`)
+      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${userId}`)
       .then(function (response) {
         setUserData(response.data);
       });
@@ -68,8 +67,10 @@ const Profile = () => {
           case "success":
             setMsg(response.data.message);
             setTimeout(() => {
+              setMsg("");
               window.location.reload();
             }, 3000);
+            getMyData();
             break;
           default:
             break;

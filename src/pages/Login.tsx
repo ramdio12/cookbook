@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import wallpaper from "../assets/bg-3.jpg";
 import logo from "../assets/cookbook_logo.png";
+import { useContext, useEffect } from "react";
+import UserContext from "../context/UserContext";
 
 const Login = () => {
-  const [inputs, setInputs] = useState({});
-  const [error, setError] = useState("");
-  const [msg, setMsg] = useState("");
+  const { msg, error, handleLogin, setError, handleChange } =
+    useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,60 +22,7 @@ const Login = () => {
         window.location.reload();
       }, 3000);
     }
-    setTimeout(() => {
-      setMsg("");
-    }, 3000);
   }, [msg]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if (value === "") {
-      setError(`${name} is empty`);
-    } else {
-      setError("");
-      setInputs((values) => ({ ...values, [name]: value }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const url = "https://weebmarclone.000webhostapp.com/login.php";
-    const { username, password }: any = inputs;
-
-    if (!username && !password) {
-      setError("Some of the fields are not filled");
-    } else {
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("password", password);
-
-      try {
-        await axios.post(url, formData).then((response) => {
-          console.log(response);
-          const status = response.data.status;
-          if (status === "failed") {
-            setError(response.data.message);
-          } else if (status === "empty") {
-            setError(response.data.message);
-          } else {
-            setMsg(response.data.message);
-            const userId = response.data.data.id;
-            const username = response.data.data.username;
-            localStorage.setItem("id", userId);
-            localStorage.setItem("username", username);
-            setTimeout(() => {
-              localStorage.setItem("login", "logged");
-              navigate("/dashboard");
-            }, 5000);
-          }
-        });
-      } catch (error: any) {
-        console.log(error.message);
-      }
-    }
-  };
-
   return (
     <div className="md:flex items-center justify-center min-h-screen">
       <div
@@ -96,7 +42,7 @@ const Login = () => {
           <img src={logo} alt="logo" width={150} height={150} />
           <h1 className="text-4xl font-bold">Welcome Back</h1>
         </div>
-        <form onSubmit={handleSubmit} className=" text-center w-full  py-16">
+        <form onSubmit={handleLogin} className=" text-center w-full  py-16">
           <p>
             {msg !== "" ? (
               <span className="text-green-700 text-2xl">{msg}</span>
@@ -130,11 +76,9 @@ const Login = () => {
         </form>
         <div className="mb-16">
           <span>No Account? Please Register </span>
-          <button
-            className="text-blue-700"
-            onClick={() => navigate("/register")}>
+          <Link className="text-blue-700" to="/register">
             Here
-          </button>
+          </Link>
         </div>
       </div>
     </div>

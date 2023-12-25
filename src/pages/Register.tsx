@@ -1,116 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import wallpaper from "../assets/bg-3.jpg";
 import logo from "../assets/cookbook_logo.png";
-
-interface Inputs {
-  name?: string;
-  username?: string;
-  email?: string;
-  password?: string;
-}
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
+import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [inputs, setInputs] = useState<Inputs>({});
-  const [error, setError] = useState("");
-  const [msg, setMsg] = useState("");
-  const [disable, setDisable] = useState(false);
-  const [isDuplicate, setIsDuplicate] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMsg("");
-    }, 3000);
-  }, [msg]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if (value === "") {
-      setError(`${name} is empty!`);
-    } else {
-      setError("");
-      setInputs((values) => ({ ...values, [name]: value }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setDisable(true);
-    const url = "https://weebmarclone.000webhostapp.com/register.php";
-    const { name, username, email, password }: any = inputs;
-
-    if (!name && !username && !email && !password) {
-      setError("All fields must be filled");
-    } else {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("username", username);
-      formData.append("email", email);
-      formData.append("password", password);
-
-      try {
-        await axios.post(url, formData).then((response) => {
-          const status = response.data.status;
-          const message = response.data.message;
-          if (status === "empty") {
-            setError("some fields needs to be filled");
-          } else if (status === "password_error") {
-            setError(message);
-          } else if (status === "username_error") {
-            setError(message);
-          } else {
-            setMsg(message);
-            setTimeout(() => {
-              navigate("/");
-            }, 5000);
-          }
-        });
-      } catch (error: any) {
-        console.log(error.message);
-      }
-    }
-
-    setDisable(false);
-  };
-
-  const checkEmail = async () => {
-    const { email }: any = inputs;
-    const formData = new FormData();
-    formData.append("email", email);
-
-    await axios
-      .post("https://weebmarclone.000webhostapp.com/check_email.php", formData)
-      .then((response) => {
-        if (response.data.status === "duplicate") {
-          setError(response.data.message);
-          setIsDuplicate(true);
-        } else {
-          setIsDuplicate(false);
-        }
-      });
-  };
-
-  const checkUsername = async () => {
-    const { username }: any = inputs;
-    const formData = new FormData();
-    formData.append("username", username);
-    await axios
-      .post(
-        "https://weebmarclone.000webhostapp.com/check_username.php",
-        formData
-      )
-      .then((response) => {
-        if (response.data.status === "duplicate") {
-          setError(response.data.message);
-          setIsDuplicate(true);
-        } else {
-          setIsDuplicate(false);
-        }
-      });
-  };
+  const {
+    msg,
+    error,
+    isDuplicate,
+    disable,
+    handleChange,
+    handleRegistration,
+    checkEmail,
+    checkUsername,
+  } = useContext(UserContext);
 
   return (
     <div className="md:flex items-center justify-center min-h-screen">
@@ -131,7 +35,9 @@ const Register = () => {
           <h1 className="text-4xl font-bold">Register</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className=" text-center w-full  pt-16">
+        <form
+          onSubmit={handleRegistration}
+          className=" text-center w-full  pt-16">
           <p>
             {msg !== "" ? (
               <span className="text-green-700 text-2xl">{msg}</span>
@@ -192,9 +98,9 @@ const Register = () => {
           )}
         </form>
         <span>Have an account? Please Login </span>
-        <button className="text-blue-700" onClick={() => navigate("/")}>
+        <Link className="text-blue-700" to="/">
           Here
-        </button>
+        </Link>
       </div>
     </div>
   );

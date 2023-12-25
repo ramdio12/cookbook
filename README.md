@@ -2,7 +2,7 @@
 
 ## A REACT TS Web application with PHP(PDO) REST API Authentication/CRUD and PDF Saver/exporter
 
-## USED
+## TOOLDS USED
 
 - React Typescript
 - Tailwind CSS
@@ -13,6 +13,8 @@
 - React to Print
 
 ## Description
+
+- Instead of making a basic React CRUD for my portfolio project, I decided to make a more complex CRUD(minus DELETE- for now) with PHP REST API and authentication (Login and Register) as well. This project is a combination of HTML,CSS,Javascript(React JS) , PHP and Mysql
 
 - This project is purposely for food enthusiasts and those who wanted to learn how to cook. Anyone can share their homemade recipes. Not only the user can create a recipe note but they can also download other user's recipe as well in PDF
 
@@ -39,8 +41,8 @@
 
 ## Challenges
 
-    - Since PUT and DELETE METHOD is not supported on 000webhost for non premium users,  I use Axios.post for the update method. And as for the delete method , I replaced it with PDF export for now .
-    - Fetching with axios.get and useEffect could be troublesome sometimes, so I used useQuery at the homepage to fetch all data. With useQuery, I was able to fetch all fresh data without refreshing the homepage.
+    - Since PUT and DELETE METHOD is not supported on 000webhost for non premium users,  I used Axios.post for the update method. And as for the delete method , I replaced it with PDF export for now.
+    - Fetching with axios.get and useEffect could be troublesome sometimes, so I used useQuery at the homepage  to fetch all data. With useQuery, I was able to fetch all fresh data without refreshing the homepage.
 
 ## Features to be added in the future or needed to improve
 
@@ -51,6 +53,7 @@
 - search bar and button
 - filtering for faster search (ex: by category or by date or by title)
 - Group by category (Example: pork,beef,fish,chicken or breakfast, lunch, snack, and dinner)
+- Need a better state management that handles Authentication and CRUD Functions aside from using ContextProvider
 
 <br>
 <br>

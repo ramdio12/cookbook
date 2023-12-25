@@ -15,9 +15,9 @@ export type RecipeProps = {
 };
 
 const Dashboard = () => {
-  const { recipes, error, recipesFetchLoading } = useContext(UserContext);
+  const { recipes, failFetch, recipesFetchLoading } = useContext(UserContext);
 
-  if (error) {
+  if (failFetch) {
     return (
       <>
         <Navbar />

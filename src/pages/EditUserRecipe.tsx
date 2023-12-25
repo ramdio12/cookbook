@@ -1,7 +1,8 @@
 import Navbar from "../components/Navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const EditUserRecipe = () => {
   const navigate = useNavigate();
@@ -10,10 +11,13 @@ const EditUserRecipe = () => {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const { id } = useParams();
+  const { username }: any = useContext(UserContext);
 
   useEffect(() => {
     getUserRecipe();
   }, []);
+
+  console.log(username);
 
   const handleChange = (e: any) => {
     const name = e.target.name;
@@ -22,7 +26,7 @@ const EditUserRecipe = () => {
       setError(`${name} is empty!`);
     } else {
       setError("");
-      setInputs((values: any) => ({
+      setInputs((values: {} | null) => ({
         ...values,
         [name]: value,
       }));
@@ -38,7 +42,7 @@ const EditUserRecipe = () => {
       });
   };
 
-  const handleUpdate = async (e: any) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const url = "https://weebmarclone.000webhostapp.com/update_my_recipe.php";
@@ -49,6 +53,7 @@ const EditUserRecipe = () => {
     } else {
       const formData = new FormData();
       formData.append("id", recipeId);
+      formData.append("username", username);
       formData.append("title", title);
       formData.append("description", description);
       formData.append("ingredients", ingredients);
