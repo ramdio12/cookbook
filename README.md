@@ -16,7 +16,9 @@
 
 - Instead of making a basic React CRUD for my portfolio project, I decided to make a more complex CRUD(minus DELETE- for now) with PHP REST API and authentication (Login and Register) as well. This project is a combination of HTML,CSS,Javascript(React JS) , PHP and Mysql
 
-- This project is purposely for food enthusiasts and those who wanted to learn how to cook. Anyone can share their homemade recipes. Not only the user can create a recipe note but they can also download other user's recipe as well in PDF
+- This project is purposely for food enthusiasts and those who wanted to learn how to cook. Anyone can share their homemade recipes. Not only the user can create a recipe note but they can also download other user's recipe as well in PDF.
+
+- The frontend is hosted on vercel while my PHP files for backend is hosted on 000webhost
 
 ## INSTRUCTIONS
 
