@@ -25,7 +25,9 @@ const Recipe = () => {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
       .then((response) => {
+        console.log(response);
         const data = response.data;
+
         const {
           username,
           title,
@@ -36,7 +38,7 @@ const Recipe = () => {
         } = data;
         const ingredientsList = ingredients
           .split(",")
-          .map((item: any) => item.trim());
+          .map((item: string) => item.trim());
 
         setUsername(username);
         setTitle(title);

@@ -30,7 +30,7 @@ const UserRecipe = () => {
           data;
         const ingredientsList = ingredients
           .split(",")
-          .map((item: any) => item.trim());
+          .map((item: string) => item.trim());
         setRecipeId(id);
         setTitle(title);
         setDescription(description);

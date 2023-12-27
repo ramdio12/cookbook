@@ -8,7 +8,6 @@ import ScrollToTop from "../components/ScrollToTop";
 export type RecipeProps = {
   id: number;
   title: string;
-  description: string;
   photo: string;
   username: string;
   created_at: Date;

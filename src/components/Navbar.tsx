@@ -8,9 +8,9 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername]: any = useState("");
+  const [username, setUsername] = useState<string | null>("");
   const [display, setDisplay] = useState("hidden");
 
   useEffect(() => {

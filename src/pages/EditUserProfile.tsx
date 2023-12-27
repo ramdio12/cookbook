@@ -15,14 +15,14 @@ const EditUserProfile = () => {
     getUserData();
   }, []);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     if (value === "") {
       setError(`${name} is empty!`);
     } else {
       setError("");
-      setInputs((values: any) => ({
+      setInputs((values: {} | null) => ({
         ...values,
         [name]: value,
       }));
@@ -38,11 +38,11 @@ const EditUserProfile = () => {
       });
   };
 
-  const handleUpdateProfile = async (e: any) => {
+  const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const url = "https://weebmarclone.000webhostapp.com/my_data.php";
-    const { name, username, email }: any = inputs;
+    const { name, username, email } = inputs;
 
     console.log(inputs);
 
@@ -61,6 +61,7 @@ const EditUserProfile = () => {
           if (status === "empty") {
             setError(response.data.message);
           } else {
+            localStorage.setItem("username", username);
             setMsg("Edit data success. Reloading...");
             setTimeout(() => {
               navigate("/userrecipes");

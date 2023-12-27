@@ -1,6 +1,6 @@
 # COOKBOOK - A Web Application
 
-## A REACT TS Web application with PHP(PDO) REST API Authentication/CRUD and PDF Saver/exporter
+## A REACT Web application with PHP(PDO) REST API Authentication/CRUD and PDF Saver/exporter
 
 ## TOOLDS USED
 
@@ -18,7 +18,7 @@
 
 - This project is purposely for food enthusiasts and those who wanted to learn how to cook. Anyone can share their homemade recipes. Not only the user can create a recipe note but they can also download other user's recipe as well in PDF.
 
-- The frontend is hosted on vercel while my PHP files for backend is hosted on 000webhost
+- The frontend is hosted on vercel while my PHP files for backend is hosted on 000webhost(hostinger)
 
 ## INSTRUCTIONS
 
@@ -48,14 +48,17 @@
 
 ## Features to be added in the future or needed to improve
 
-- DELETE button
+There are lots of things that I needed to improve in this project it includes:
+
+- Adding DELETE button
 - Password changer
-- UI of my project
+- Make a better UI of my project
 - More stronger validation and security for Login and Registration
 - search bar and button
 - filtering for faster search (ex: by category or by date or by title)
 - Group by category (Example: pork,beef,fish,chicken or breakfast, lunch, snack, and dinner)
 - Need a better state management that handles Authentication and CRUD Functions aside from using ContextProvider
+- Add much more constraints of all data types in my code instead of using generic type "any"
 
 <br>
 <br>

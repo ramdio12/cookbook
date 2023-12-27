@@ -24,7 +24,7 @@ const AddRecipe = () => {
     setPhoto(e.target.files[0]);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: { target: { name: string; value: {} | null } }) => {
     const name = e.target.name;
     const value = e.target.value;
     if (value === "") {
@@ -40,7 +40,7 @@ const AddRecipe = () => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const url = "https://weebmarclone.000webhostapp.com/recipe_crud.php/";

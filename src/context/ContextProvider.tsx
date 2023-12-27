@@ -20,7 +20,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [updatedPhoto, setUpdatedPhoto] = useState("");
   const [preview, setPreview] = useState("");
   const [userId, setUserId] = useState(null);
-  const [username, setUsername]: any = useState(null);
+  const [username, setUsername] = useState<string | null>(null);
 
   const [inputs, setInputs] = useState<Inputs>({});
   const [error, setError] = useState("");

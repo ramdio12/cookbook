@@ -19,7 +19,7 @@ const EditUserRecipe = () => {
 
   console.log(username);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: { target: { name: string; value: {} | null } }) => {
     const name = e.target.name;
     const value = e.target.value;
     if (value === "") {
@@ -46,7 +46,7 @@ const EditUserRecipe = () => {
     e.preventDefault();
 
     const url = "https://weebmarclone.000webhostapp.com/update_my_recipe.php";
-    const { title, description, ingredients, instructions }: any = inputs;
+    const { title, description, ingredients, instructions } = inputs;
 
     if (!title && !description && !ingredients && !instructions) {
       setError("Some of the fields are not filled");
@@ -60,11 +60,6 @@ const EditUserRecipe = () => {
       formData.append("instructions", instructions);
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response);
-          console.log(response.data);
-          console.log(response.data.status);
-          console.log(response.data.message);
-
           const status = response.data.status;
           if (status === "empty") {
             setError(response.data.message);

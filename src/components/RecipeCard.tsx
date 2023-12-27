@@ -9,9 +9,9 @@ const RecipeCard = ({
   created_at,
 }: RecipeProps) => {
   const navigate = useNavigate();
-  const date: any = new Date();
-  const publishDate: any = new Date(created_at);
-  const dateDifference = Math.abs(publishDate - date);
+  const date: Date = new Date();
+  const publishDate: Date = new Date(created_at);
+  const dateDifference = Math.abs(publishDate.getTime() - date.getTime());
   const daysPassed = Math.ceil(dateDifference / (1000 * 60 * 60 * 24));
   const day = daysPassed - 1;
 

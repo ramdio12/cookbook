@@ -6,14 +6,14 @@ type UserProps = {
   preview: string;
   msg: string;
   error: string;
-  handleFileChange: (e: any) => void;
+  handleFileChange: (e: React.FormEvent) => void;
   recipes: never[];
   failFetch: Error;
   recipesFetchLoading: boolean;
   disable: boolean;
   isDuplicate: boolean;
-  userId: any;
-  setError: (a: any) => void;
+  userId: number | null;
+  setError: (a: string) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleRegistration: (e: React.FormEvent<HTMLFormElement>) => void;
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
