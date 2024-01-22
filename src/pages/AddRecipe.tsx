@@ -6,17 +6,14 @@ import { useNavigate } from "react-router-dom";
 const AddRecipe = () => {
   const navigate = useNavigate();
   const [userId, setUserId]: any = useState(null);
-  const [username, setUsername]: any = useState("");
   const [inputs, setInputs] = useState({});
   const [photo, setPhoto] = useState("");
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const uname = localStorage.getItem("username");
     const uid = localStorage.getItem("id");
     setUserId(uid);
-    setUsername(uname);
   }, []);
 
   const handleFileChange = (e: any) => {
@@ -47,7 +44,6 @@ const AddRecipe = () => {
     const { title, description, ingredients, instructions }: any = inputs;
 
     const formData = new FormData();
-    formData.append("username", username);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("ingredients", ingredients);
@@ -138,6 +134,7 @@ const AddRecipe = () => {
             <label htmlFor="instructions" className="block text-2xl mb-2">
               Instructions
             </label>
+            <small>(Separate each instructions by comma or dot)</small>
             <textarea
               placeholder="Instructions..."
               name="instructions"

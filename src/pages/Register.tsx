@@ -33,11 +33,12 @@ const Register = () => {
         <div className="flex flex-col items-center justify-center">
           <img src={logo} alt="logo" width={150} height={150} />
           <h1 className="text-4xl font-bold">Register</h1>
+          <p>Fill all the fields below</p>
         </div>
 
         <form
           onSubmit={handleRegistration}
-          className=" text-center w-full  pt-16">
+          className=" text-center w-full  pt-12">
           <p>
             {msg !== "" ? (
               <span className="text-green-700 text-2xl">{msg}</span>
@@ -84,23 +85,39 @@ const Register = () => {
               name="password"
               onChange={handleChange}
             />
+            <small className="block text-xs">
+              (Password must be 8 characters long with Uppercase , lowercase,
+              and special characters)
+            </small>
+            {/* <small className="block w-full">
+              By clicking the Sign Up button,you agree to our <br />
+              <a href="#" className=" text-blue-700 underline">
+                Terms & Condition
+              </a>
+              <span> and </span>
+              <a href="#" className=" text-blue-700 underline">
+                Policy Privacy
+              </a>
+            </small> */}
           </div>
 
           {!isDuplicate ? (
             <input
               type="submit"
-              className="cursor-pointer bg-red-500 px-8 rounded-md py-2 text-white"
+              className="cursor-pointer bg-red-500 hover:bg-red-700 duration-500 ease-in-out px-8 rounded-md py-2 text-white my-4"
               disabled={disable}
-              value="submit"
+              value="Sign Up"
             />
           ) : (
             <></>
           )}
         </form>
-        <span>Have an account? Please Login </span>
-        <Link className="text-blue-700" to="/">
-          Here
-        </Link>
+        <span>
+          Have an account? Please Login{" "}
+          <Link className="text-blue-700" to="/">
+            Here
+          </Link>
+        </span>
       </div>
     </div>
   );

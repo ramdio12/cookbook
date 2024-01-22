@@ -36,11 +36,15 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     setTimeout(() => {
       setMsg("");
     }, 3000);
+    setTimeout(() => {
+      setError("");
+    }, 3000);
+
     const uid: any = localStorage.getItem("id");
     const uname = localStorage.getItem("username");
     setUsername(uname);
     setUserId(uid);
-  }, [msg]);
+  }, [msg, error]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -152,6 +156,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
+          console.log(response.status);
           console.log(response);
           const status = response.data.status;
           if (status === "failed") {

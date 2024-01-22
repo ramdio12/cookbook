@@ -7,6 +7,7 @@ import UserContext from "../context/UserContext";
 const Login = () => {
   const { msg, error, handleLogin, setError, handleChange } =
     useContext(UserContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const Login = () => {
       }, 3000);
     }
   }, [msg]);
+
   return (
     <div className="md:flex items-center justify-center min-h-screen">
       <div
@@ -42,7 +44,9 @@ const Login = () => {
           <img src={logo} alt="logo" width={150} height={150} />
           <h1 className="text-4xl font-bold">Welcome Back</h1>
         </div>
+
         <form onSubmit={handleLogin} className=" text-center w-full  py-16">
+          <h1 className="text-2xl font-bold">Login Here</h1>
           <p>
             {msg !== "" ? (
               <span className="text-green-700 text-2xl">{msg}</span>
@@ -69,7 +73,7 @@ const Login = () => {
             />
           </div>
           <input
-            className="cursor-pointer bg-red-500 px-8 rounded-md py-2 mt-4 text-white"
+            className="cursor-pointer bg-red-500  hover:bg-red-700 duration-500 ease-in-out px-8 rounded-md py-2 mt-4 text-white"
             type="submit"
             value="Login"
           />
