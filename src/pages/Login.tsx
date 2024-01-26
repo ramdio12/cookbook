@@ -42,11 +42,10 @@ const Login = () => {
       <div className="basis-1/2 bg-gray-300 min-h-screen flex flex-col items-center justify-center w-full">
         <div className="flex flex-col items-center justify-center">
           <img src={logo} alt="logo" width={150} height={150} />
-          <h1 className="text-4xl font-bold">Welcome Back</h1>
+          <h1 className="text-4xl font-bold">Welcome back, please login!</h1>
         </div>
 
         <form onSubmit={handleLogin} className=" text-center w-full  py-16">
-          <h1 className="text-2xl font-bold">Login Here</h1>
           <p>
             {msg !== "" ? (
               <span className="text-green-700 text-2xl">{msg}</span>
