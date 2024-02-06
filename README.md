@@ -20,6 +20,12 @@
 
 - The frontend is hosted on vercel while my PHP files for backend is hosted on 000webhost(hostinger)
 
+## PHP FILE LOCATION
+
+This is my github link for all PHP files that I used for the project's backend
+
+- https://github.com/ramdio12/php_files_for_cookbook_webapp
+
 ## INSTRUCTIONS
 
 - The user need to register first, and then login
@@ -28,14 +34,18 @@
 
 ## PAGES SPECIFICATIONS
 
+### AUTHENTICATION PAGE
+
+- The first page you will see is the authentication page, any attempt to enter the dashboard will be failed because the components are protected. You can register your credentials to the sign up page. If successful, you will be redirected to the login page
+
 ### HOME SECTION (DASHBOARD)
 
 - A page where all of the users' recipes will be displayed. With the help of React Query, I can display data even without using useEffect Hook
 
-### MY RECIPE (WITH USER PROFILE COMPONENT)
+### MY PROFILE (WITH USER'S RECIPE DASHBOARD)
 
 - The specific user's recipe will only be displayed in table form, where they can either view or edit the recipe
-- Along with the recipes, it also have the users profile beside it. They can either change profile photo or edit their information
+- Along with the recipes, it also have the user's profile beside it. They can either change profile photo or edit their information
 
 ### ADD RECIPE
 

@@ -1,8 +1,7 @@
 import Navbar from "../components/Navbar";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import UserContext from "../context/UserContext";
 
 const EditUserRecipe = () => {
   const navigate = useNavigate();
@@ -11,13 +10,10 @@ const EditUserRecipe = () => {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const { id } = useParams();
-  const { username }: any = useContext(UserContext);
 
   useEffect(() => {
     getUserRecipe();
   }, []);
-
-  console.log(username);
 
   const handleChange = (e: { target: { name: string; value: {} | null } }) => {
     const name = e.target.name;
@@ -55,7 +51,6 @@ const EditUserRecipe = () => {
     } else {
       const formData = new FormData();
       formData.append("id", recipeId);
-      formData.append("username", username);
       formData.append("title", title);
       formData.append("description", description);
       formData.append("ingredients", ingredients);

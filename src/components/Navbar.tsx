@@ -49,14 +49,22 @@ const Navbar: React.FC = () => {
         <span className=" font-mono text-lg">CookBook</span>
       </div>
 
-      <nav className="hidden md:flex gap-4">
-        <Link to="/dashboard">Home</Link>
-        <Link to="/userrecipes">My Recipe</Link>
-        <Link to="/addrecipe">Add Recipe</Link>
+      <nav className="hidden md:flex gap-8">
+        <Link to="/dashboard" className="text-xl hover:text-yellow-400">
+          Home
+        </Link>
+        <Link to="/userrecipes" className="text-xl hover:text-yellow-400">
+          My Profile
+        </Link>
+        <Link to="/addrecipe" className="text-xl hover:text-yellow-400">
+          Add Recipe
+        </Link>
       </nav>
-      <div className="hidden md:flex">
+      <div className="hidden md:flex items-center justify-center">
         <span className="mr-4">Hi {username}</span>
-        <button onClick={logout}>Logout</button>
+        <button onClick={logout} title="Click to logout">
+          <FontAwesomeIcon icon={faRightFromBracket} className=" w-10 h-8" />
+        </button>
       </div>
       <FontAwesomeIcon
         icon={faBars}
