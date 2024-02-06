@@ -23,6 +23,9 @@ const UserRecipes = () => {
     getUserRecipe(uid);
   }, []);
 
+  /*
+  As the user visits their peofile page, they will also able to see their recipes
+  */
   async function getUserRecipe(userId: number) {
     await axios
       .get(

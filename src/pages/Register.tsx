@@ -8,7 +8,6 @@ const Register = () => {
   const {
     msg,
     error,
-    isDuplicate,
     disable,
     handleChange,
     handleRegistration,
@@ -89,28 +88,14 @@ const Register = () => {
               (Password must be 8 characters long with Uppercase , lowercase,
               and special characters)
             </small>
-            {/* <small className="block w-full">
-              By clicking the Sign Up button,you agree to our <br />
-              <a href="#" className=" text-blue-700 underline">
-                Terms & Condition
-              </a>
-              <span> and </span>
-              <a href="#" className=" text-blue-700 underline">
-                Policy Privacy
-              </a>
-            </small> */}
           </div>
 
-          {!isDuplicate ? (
-            <input
-              type="submit"
-              className="cursor-pointer bg-red-500 hover:bg-red-700 duration-500 ease-in-out px-8 rounded-md py-2 text-white my-4"
-              disabled={disable}
-              value="Sign Up"
-            />
-          ) : (
-            <></>
-          )}
+          <input
+            type="submit"
+            className="cursor-pointer bg-red-500 hover:bg-red-700 duration-500 ease-in-out px-8 rounded-md py-2 text-white my-4"
+            disabled={disable}
+            value="Sign Up"
+          />
         </form>
         <span>
           Have an account? Please Login{" "}

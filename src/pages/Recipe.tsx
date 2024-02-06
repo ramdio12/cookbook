@@ -21,6 +21,8 @@ const Recipe = () => {
     getRecipe();
   }, []);
 
+  // when the user click a recipe card, they will be redirected in this page
+  // a specific recipe will be displayed
   const getRecipe = async () => {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
@@ -66,6 +68,7 @@ const Recipe = () => {
               <h2 className="text-xl font-semibold">Posted by : @{username}</h2>
             </div>
             {photo && (
+              // a photo will be fetched from the database
               <img
                 src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
                 className="md:w-2/4 mx-auto"

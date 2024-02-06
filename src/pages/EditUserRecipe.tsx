@@ -33,6 +33,7 @@ const EditUserRecipe = () => {
     }
   };
 
+  // get the recipe of the user by id
   const getUserRecipe = async () => {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
@@ -42,6 +43,7 @@ const EditUserRecipe = () => {
       });
   };
 
+  // handles the update of the recipe
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

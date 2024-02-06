@@ -28,7 +28,7 @@ const EditUserProfile = () => {
       }));
     }
   };
-
+  // fetch users data
   const getUserData = async () => {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${id}`)
@@ -37,7 +37,7 @@ const EditUserProfile = () => {
         setInputs(response.data);
       });
   };
-
+  // the inputs will be sent to the database if there are no errors
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

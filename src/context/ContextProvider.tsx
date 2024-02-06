@@ -70,8 +70,8 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     const url = "https://weebmarclone.000webhostapp.com/register.php";
     const { name, username, email, password }: any = inputs;
 
-    if (!name && !username && !email && !password) {
-      setError("All fields must be filled");
+    if (!name || !username || !email || !password) {
+      setError("Fill all the fields please!");
     } else {
       const formData = new FormData();
       formData.append("name", name);
@@ -81,19 +81,15 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          const status = response.data.status;
-          const message = response.data.message;
-          if (status === "empty") {
-            setError("some fields needs to be filled");
-          } else if (status === "password_error") {
-            setError(message);
-          } else if (status === "username_error") {
-            setError(message);
-          } else {
-            setMsg(message);
+          console.log(response);
+          if (response.data.success) {
+            setMsg(response.data.success);
             setTimeout(() => {
               navigate("/");
             }, 5000);
+          } else {
+            console.log(response.data.error);
+            setError(response.data.error);
           }
         });
       } catch (error: any) {
@@ -104,6 +100,9 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     setDisable(false);
   };
 
+  /*
+    Check Email and check username functions will remind the user to input a unique username or email address
+  */
   const checkEmail = async () => {
     const { email }: any = inputs;
     const formData = new FormData();
@@ -148,7 +147,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     const { username, password }: any = inputs;
 
     if (!username && !password) {
-      setError("Some of the fields are not filled");
+      setError("All fields must be filled!");
     } else {
       const formData = new FormData();
       formData.append("username", username);
@@ -158,13 +157,11 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         await axios.post(url, formData).then((response) => {
           console.log(response.status);
           console.log(response);
-          const status = response.data.status;
-          if (status === "failed") {
-            setError(response.data.message);
-          } else if (status === "empty") {
-            setError(response.data.message);
-          } else {
-            setMsg(response.data.message);
+          console.log(response.data.success);
+          console.log(response.data.error);
+
+          if (response.data.success) {
+            setMsg(response.data.success);
             const userId = response.data.data.id;
             const username = response.data.data.username;
             localStorage.setItem("id", userId);
@@ -173,7 +170,28 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
               localStorage.setItem("login", "logged");
               navigate("/dashboard");
             }, 5000);
+            console.log(userId);
+            console.log(username);
+          } else {
+            setError(response.data.error);
           }
+
+          // const status = response.data.status;
+          // if (status === "failed") {
+          //   setError(response.data.message);
+          // } else if (status === "empty") {
+          //   setError(response.data.message);
+          // } else {
+          //   setMsg(response.data.message);
+          //   const userId = response.data.data.id;
+          //   const username = response.data.data.username;
+          //   localStorage.setItem("id", userId);
+          //   localStorage.setItem("username", username);
+          //   setTimeout(() => {
+          //     localStorage.setItem("login", "logged");
+          //     navigate("/dashboard");
+          //   }, 5000);
+          // }
         });
       } catch (error: any) {
         console.log(error.message);

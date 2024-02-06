@@ -20,6 +20,7 @@ const Profile = () => {
     getMyData();
   });
 
+  // get the users data to display it
   async function getMyData() {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${userId}`)
@@ -32,6 +33,7 @@ const Profile = () => {
     myName[i] = myName[i][0].toUpperCase() + myName[i]?.substr(1);
   }
 
+  // if the user decided to change the profile pic, this function will handle the task
   const editProfilePhoto = async () => {
     const formData = new FormData();
     formData.set("id", userId);

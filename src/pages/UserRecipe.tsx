@@ -21,6 +21,9 @@ const UserRecipe = () => {
     getMyrecipe();
   }, []);
 
+  /*
+  At the user's profile page, they can access their all recipes that has been made
+  */
   const getMyrecipe = async () => {
     await axios
       .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
@@ -39,6 +42,8 @@ const UserRecipe = () => {
         setPhoto(photo);
       });
   };
+
+  // the can also update their recipe photo
 
   const handleEditPhoto = async () => {
     const formData = new FormData();
