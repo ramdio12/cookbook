@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import Profile from "./Profile";
 
 const UserRecipes = () => {
   const [userRecipe, setUserRecipe] = useState([]);
@@ -55,8 +54,6 @@ const UserRecipes = () => {
     <>
       <Navbar />
       <div className=" relative md:flex">
-        <Profile />
-
         <div className="w-full ">
           <h1 className="text-center text-4xl font-bold my-4 ">
             Manage Recipes
@@ -83,14 +80,14 @@ const UserRecipes = () => {
                         <td className="flex pt-2 pr-2 gap-2 ">
                           <button
                             onClick={() => navigate(`/userrecipe/${id}/edit`)}
-                            className=" p-2 w-full bg-sky-600  text-white rounded-lg ">
+                            className=" p-2 w-full bg-sky-600 hover:bg-sky-800  text-white rounded-lg ">
                             <FontAwesomeIcon icon={faPenToSquare} /> Edit
                           </button>
                           <button
                             onClick={() =>
                               navigate(`/userrecipe/${id}/myrecipe`)
                             }
-                            className=" p-2 w-full bg-green-500  text-white rounded-lg whitespace-nowrap">
+                            className=" p-2 w-full bg-green-500 hover:bg-green-800  text-white rounded-lg whitespace-nowrap">
                             <FontAwesomeIcon icon={faEye} /> Show
                           </button>
                         </td>

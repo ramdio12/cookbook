@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
+  faCircleChevronDown,
+  faCircleChevronUp,
+  faPowerOff,
   faRightFromBracket,
+  faUser,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,11 +17,16 @@ const Navbar: React.FC = () => {
   const [username, setUsername] = useState<string | null>("");
   const [display, setDisplay] = useState("hidden");
 
+  const [dropDown, setDropDown] = useState(false);
+
   useEffect(() => {
     const uname = localStorage.getItem("username");
     setUsername(uname);
   }, []);
 
+  const dropDownClick = () => {
+    setDropDown((prev) => !prev);
+  };
   const openSideBar = () => {
     setDisplay(display === "flex" ? "hidden" : "flex");
   };
@@ -54,17 +63,56 @@ const Navbar: React.FC = () => {
           Home
         </Link>
         <Link to="/userrecipes" className="text-xl hover:text-yellow-400">
-          My Profile
+          My Recipes
         </Link>
         <Link to="/addrecipe" className="text-xl hover:text-yellow-400">
           Add Recipe
         </Link>
       </nav>
       <div className="hidden md:flex items-center justify-center">
-        <span className="mr-4">Hi {username}</span>
-        <button onClick={logout} title="Click to logout">
-          <FontAwesomeIcon icon={faRightFromBracket} className=" w-10 h-8" />
-        </button>
+        <div className="flex items-center justify-center flex-col relative">
+          <div>
+            <span className=" mr-2 text-xl">Hi {username}</span>
+            {dropDown ? (
+              <FontAwesomeIcon
+                icon={faCircleChevronUp}
+                onClick={dropDownClick}
+                className="text-2xl cursor-pointer"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faCircleChevronDown}
+                onClick={dropDownClick}
+                className="text-2xl cursor-pointer"
+              />
+              // <FontAwesomeIcon
+              //   icon={faAngleDown}
+              //   onClick={dropDownClick}
+              //   className="text-xl cursor-pointer"
+              // />
+            )}
+          </div>
+          {dropDown && (
+            <div className="absolute top-12 bg-orange-800 w-28 px-2 z-50">
+              <div>
+                <FontAwesomeIcon icon={faUser} className="mr-2" />
+                <Link
+                  to="/profile"
+                  className="py-2 text-xl font-normal hover:text-yellow-400">
+                  Profile
+                </Link>
+              </div>
+              <div className="cursor-pointer">
+                <FontAwesomeIcon icon={faPowerOff} className="mr-2" />
+                <button
+                  className="pb-2 text-xl font-normal hover:text-yellow-400"
+                  onClick={logout}>
+                  Log Out
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <FontAwesomeIcon
         icon={faBars}

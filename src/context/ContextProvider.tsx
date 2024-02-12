@@ -35,10 +35,10 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   useEffect(() => {
     setTimeout(() => {
       setMsg("");
-    }, 3000);
+    }, 4000);
     setTimeout(() => {
       setError("");
-    }, 3000);
+    }, 4000);
 
     const uid: any = localStorage.getItem("id");
     const uname = localStorage.getItem("username");
@@ -49,7 +49,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (value === "") {
+    if (value.trim() === "") {
       setError(`${name} is empty!`);
     } else {
       setError("");
@@ -67,6 +67,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisable(true);
+    // const url = "http://localhost/php_files/register.php";
     const url = "https://weebmarclone.000webhostapp.com/register.php";
     const { name, username, email, password }: any = inputs;
 
@@ -84,11 +85,13 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
           console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
+            setInputs({});
             setTimeout(() => {
               navigate("/");
             }, 5000);
           } else {
             console.log(response.data.error);
+            console.log(response);
             setError(response.data.error);
           }
         });
@@ -101,7 +104,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   };
 
   /*
-    Check Email and check username functions will remind the user to input a unique username or email address
+    Check Email and check username functions will remind the user to input a unique username or email address, even if they were able to submit it, the backend server will handle it and send it back to the user  along with the error messages
   */
   const checkEmail = async () => {
     const { email }: any = inputs;
@@ -155,17 +158,14 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response.status);
-          console.log(response);
-          console.log(response.data.success);
-          console.log(response.data.error);
-
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
             const username = response.data.data.username;
+
             localStorage.setItem("id", userId);
             localStorage.setItem("username", username);
+
             setTimeout(() => {
               localStorage.setItem("login", "logged");
               navigate("/dashboard");
@@ -175,23 +175,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
           } else {
             setError(response.data.error);
           }
-
-          // const status = response.data.status;
-          // if (status === "failed") {
-          //   setError(response.data.message);
-          // } else if (status === "empty") {
-          //   setError(response.data.message);
-          // } else {
-          //   setMsg(response.data.message);
-          //   const userId = response.data.data.id;
-          //   const username = response.data.data.username;
-          //   localStorage.setItem("id", userId);
-          //   localStorage.setItem("username", username);
-          //   setTimeout(() => {
-          //     localStorage.setItem("login", "logged");
-          //     navigate("/dashboard");
-          //   }, 5000);
-          // }
         });
       } catch (error: any) {
         console.log(error.message);

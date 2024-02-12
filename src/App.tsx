@@ -12,6 +12,7 @@ import ContextProvider from "./context/ContextProvider";
 import EditUserProfile from "./pages/EditUserProfile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 function App() {
   const client = new QueryClient();
@@ -32,12 +33,16 @@ function App() {
               element={<Protected Component={Recipe} />}
             />
             <Route
+              path="userrecipes"
+              element={<Protected Component={UserRecipes} />}
+            />
+            <Route
               path="/addrecipe"
               element={<Protected Component={AddRecipe} />}
             />
             <Route
-              path="/userrecipes"
-              element={<Protected Component={UserRecipes} />}
+              path="/profile"
+              element={<Protected Component={Profile} />}
             />
             <Route
               path="/userrecipe/:id/myrecipe"
