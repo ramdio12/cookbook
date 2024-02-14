@@ -52,7 +52,7 @@ This is my github link for all PHP files that I used for the project's backend
 
 ### PROFILE
 
-- This page has the user's Info
+- This page has the user's Info, they can change the default profile pic or edit their info
 
 ## Challenges
 
@@ -88,6 +88,14 @@ There are lots of things that I needed to improve in this project it includes:
 ## Home Page
 
 ![Alt text](/screenshots/dashboard_new.PNG)<br>
+
+## Recipe 1
+
+![Alt text](/screenshots/recipe_new1.PNG)<br>
+
+## Recipe 2
+
+![Alt text](/screenshots/recipe_new2.PNG)<br>
 
 ## User's Recipe List
 
