@@ -13,7 +13,7 @@ export default {
         '84': '21rem',
       },
       backgroundImage: {
-        'auth-wallpaper': "url('./public/img/wallpaper3.jpg')"
+        'auth-wallpaper': "url('./img/wallpaper3.jpg')"
 
       }
     },
