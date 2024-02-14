@@ -11,8 +11,9 @@ export default {
       },
       spacing: {
         '84': '21rem',
-      }, backgroundImage: {
-        'auth-wallpaper': "url('./img/wallpaper4jpg.jpg')"
+      },
+      backgroundImage: {
+        'auth-wallpaper': "url('./public/img/wallpaper3.jpg')"
 
       }
     },
