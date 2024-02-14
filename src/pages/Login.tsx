@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import wallpaper from "../assets/wallpaper2.jpg";
 
 const Login = () => {
   const { msg, error, handleLogin, setError, handleChange } =
@@ -30,7 +31,11 @@ const Login = () => {
   }, [msg]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen flex-col bg-auth-wallpaper bg-fixed bg-center bg-cover ">
+    <div
+      className="flex items-center justify-center min-h-screen flex-col bg-fixed bg-center bg-cover "
+      style={{
+        backgroundImage: `url(${wallpaper})`,
+      }}>
       <div className=" bg-white  w-96 shadow-md rounded-md">
         <h1 className="text-4xl py-4 text-center font-bold">Log In</h1>
         <form

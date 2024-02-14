@@ -3,6 +3,7 @@ import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import wallpaper from "../assets/wallpaper2.jpg";
 
 const Register = () => {
   const { msg, error, handleChange, handleRegistration, checkEmail } =
@@ -18,7 +19,11 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen flex-col  bg-auth-wallpaper bg-fixed bg-center bg-cover ">
+    <div
+      className="flex items-center justify-center min-h-screen flex-col   bg-fixed bg-center bg-cover "
+      style={{
+        backgroundImage: `url(${wallpaper})`,
+      }}>
       <div className=" bg-white  w-96 shadow-md rounded-md">
         <h1 className="text-2xl py-4 text-center font-bold">
           Please Register Here
