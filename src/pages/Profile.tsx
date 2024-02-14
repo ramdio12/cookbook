@@ -84,7 +84,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center  flex-col text-center min-h-screen">
+      <div className="flex items-center  flex-col text-center min-h-screen bg-neutral-600">
         <h1 className="text-4xl mb-4 text-white mt-8">My Profile</h1>
         <div className=" bg-neutral-900 text-white  w-96 pt-4 rounded-md">
           <div className="h-1/5  mx-auto mb-2">

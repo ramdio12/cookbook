@@ -54,7 +54,7 @@ const UserRecipes = () => {
   return (
     <>
       <Navbar />
-      <div className=" relative md:flex min-h-screen">
+      <div className=" relative md:flex min-h-screen bg-neutral-600">
         <div className="w-full ">
           <h1 className="text-center text-4xl font-bold my-4 text-white ">
             Manage Recipes

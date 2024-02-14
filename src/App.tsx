@@ -18,7 +18,7 @@ function App() {
   const client = new QueryClient();
 
   return (
-    <div className=" overflow-hidden bg-neutral-600">
+    <div className=" overflow-hidden">
       <QueryClientProvider client={client}>
         <ContextProvider>
           <Routes>

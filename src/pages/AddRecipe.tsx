@@ -80,7 +80,7 @@ const AddRecipe = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-600">
         <h1 className="text-4xl my-8 font-semibold text-white">
           Add Some Recipes
         </h1>

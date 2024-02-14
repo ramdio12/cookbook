@@ -77,7 +77,7 @@ const EditUserProfile = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center  flex-col min-h-screen">
+      <div className="flex items-center  flex-col min-h-screen bg-neutral-600">
         <h1 className="text-4xl py-12 text-white">Edit your profile</h1>
 
         <div className="text-center bg-white px-16 py-4 rounded-md shadow-md">

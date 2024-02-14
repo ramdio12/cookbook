@@ -30,7 +30,7 @@ const Dashboard = () => {
       <Navbar />
 
       {recipesFetchLoading ? (
-        <div className="flex flex-col items-center justify-center w-full min-h-screen">
+        <div className="flex flex-col items-center justify-center w-full min-h-screen bg-neutral-600">
           <h1 className=" text-4xl font-extrabold text-white">
             Fetching All Recipes. Please Wait...{" "}
           </h1>
@@ -39,7 +39,7 @@ const Dashboard = () => {
           </span>
         </div>
       ) : (
-        <div className="w-full min-h-screen">
+        <div className="w-full min-h-screen bg-neutral-600">
           <div className="w-full text-center py-5">
             <h2 className="text-4xl font-bold text-white"> All Recipes</h2>
           </div>
