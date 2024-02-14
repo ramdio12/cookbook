@@ -14,7 +14,7 @@ const Profile = () => {
     useContext(UserRecipeContext);
   const navigate = useNavigate();
   const { userId }: any = useContext(UserContext);
-  const { name, username, email, photo }: any = userData;
+  const { name, email, photo }: any = userData;
   const myName = name?.split(" ");
 
   useEffect(() => {
@@ -84,9 +84,9 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center flex-col text-center bg-slate-300">
-        <h1 className="text-4xl mb-4">My Profile</h1>
-        <div className=" bg-neutral-600 text-white w-96 pt-4 rounded-md">
+      <div className="flex items-center  flex-col text-center min-h-screen">
+        <h1 className="text-4xl mb-4 text-white mt-8">My Profile</h1>
+        <div className=" bg-neutral-900 text-white  w-96 pt-4 rounded-md">
           <div className="h-1/5  mx-auto mb-2">
             {photo ? (
               <img
@@ -151,11 +151,6 @@ const Profile = () => {
             <div className="mb-4">
               <h2 className="text-xl">Name</h2>
               <p className="text-xl">{myName?.join(" ")}</p>
-            </div>
-            <div className="mb-4">
-              <h2 className="text-xl">Username</h2>
-
-              <p className="text-xl">@{username}</p>
             </div>
             <div className="">
               <h2 className="text-xl">Email</h2>

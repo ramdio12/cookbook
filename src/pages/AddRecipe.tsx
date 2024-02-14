@@ -80,9 +80,11 @@ const AddRecipe = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full h-full bg-slate-400 flex flex-col items-center justify-center">
-        <h1 className="text-4xl my-8 font-semibold">Add Some Recipes</h1>
-        <h2 className=" text-lg text-center">
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <h1 className="text-4xl my-8 font-semibold text-white">
+          Add Some Recipes
+        </h1>
+        <h2 className=" text-lg text-center text-white mb-4">
           All the fields below are required to fill, please check the homepage
           for the reference
         </h2>

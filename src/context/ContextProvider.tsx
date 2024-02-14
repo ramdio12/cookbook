@@ -20,7 +20,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [updatedPhoto, setUpdatedPhoto] = useState("");
   const [preview, setPreview] = useState("");
   const [userId, setUserId] = useState(null);
-  const [username, setUsername] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
 
   const [inputs, setInputs] = useState<Inputs>({});
   const [error, setError] = useState("");
@@ -41,8 +41,8 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     }, 4000);
 
     const uid: any = localStorage.getItem("id");
-    const uname = localStorage.getItem("username");
-    setUsername(uname);
+    const usersname = localStorage.getItem("name");
+    setName(usersname);
     setUserId(uid);
   }, [msg, error]);
 
@@ -67,16 +67,16 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisable(true);
-    // const url = "http://localhost/php_files/register.php";
     const url = "https://weebmarclone.000webhostapp.com/register.php";
-    const { name, username, email, password }: any = inputs;
+    const { name, confirm_password, email, password }: any = inputs;
 
-    if (!name || !username || !email || !password) {
+    if (!name || !confirm_password || !email || !password) {
       setError("Fill all the fields please!");
+    } else if (confirm_password !== password) {
+      setError("Passwords do not matched!");
     } else {
       const formData = new FormData();
       formData.append("name", name);
-      formData.append("username", username);
       formData.append("email", email);
       formData.append("password", password);
 
@@ -104,7 +104,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   };
 
   /*
-    Check Email and check username functions will remind the user to input a unique username or email address, even if they were able to submit it, the backend server will handle it and send it back to the user  along with the error messages
+    Check Email and check username functions will remind the user to input a unique email address, even if they were able to submit it, the backend server will handle it and send it back to the user  along with the error messages
   */
   const checkEmail = async () => {
     const { email }: any = inputs;
@@ -123,55 +123,56 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
       });
   };
 
-  const checkUsername = async () => {
-    const { username }: any = inputs;
-    const formData = new FormData();
-    formData.append("username", username);
-    await axios
-      .post(
-        "https://weebmarclone.000webhostapp.com/check_username.php",
-        formData
-      )
-      .then((response) => {
-        if (response.data.status === "duplicate") {
-          setError(response.data.message);
-          setIsDuplicate(true);
-        } else {
-          setIsDuplicate(false);
-        }
-      });
-  };
+  // const checkUsername = async () => {
+  //   const { username }: any = inputs;
+  //   const formData = new FormData();
+  //   formData.append("username", username);
+  //   await axios
+  //     .post(
+  //       "https://weebmarclone.000webhostapp.com/check_username.php",
+  //       formData
+  //     )
+  //     .then((response) => {
+  //       if (response.data.status === "duplicate") {
+  //         setError(response.data.message);
+  //         setIsDuplicate(true);
+  //       } else {
+  //         setIsDuplicate(false);
+  //       }
+  //     });
+  // };
 
   /*LOGIN FUNCTION*/
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = "https://weebmarclone.000webhostapp.com/login.php";
-    const { username, password }: any = inputs;
+    const { email, password }: any = inputs;
 
-    if (!username && !password) {
+    if (!email && !password) {
       setError("All fields must be filled!");
     } else {
       const formData = new FormData();
-      formData.append("username", username);
+      formData.append("email", email);
       formData.append("password", password);
 
       try {
         await axios.post(url, formData).then((response) => {
+          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
-            const username = response.data.data.username;
+            const usersname = response.data.data.name;
 
             localStorage.setItem("id", userId);
-            localStorage.setItem("username", username);
+            localStorage.setItem("name", usersname);
 
             setTimeout(() => {
               localStorage.setItem("login", "logged");
               navigate("/dashboard");
             }, 5000);
             console.log(userId);
-            console.log(username);
+            console.log(usersname);
           } else {
             setError(response.data.error);
           }
@@ -229,14 +230,13 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         disable,
         isDuplicate,
         userId,
-        username,
+        name,
         // FUNCTION CONTEXTS
         toggle,
         handleFileChange,
         handleChange,
         handleRegistration,
         checkEmail,
-        checkUsername,
         handleLogin,
         setError,
       }}>

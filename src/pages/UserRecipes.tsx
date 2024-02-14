@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import foodPic from "../assets/Food Service.png";
 
 const UserRecipes = () => {
   const [userRecipe, setUserRecipe] = useState([]);
@@ -53,9 +54,9 @@ const UserRecipes = () => {
   return (
     <>
       <Navbar />
-      <div className=" relative md:flex">
+      <div className=" relative md:flex min-h-screen">
         <div className="w-full ">
-          <h1 className="text-center text-4xl font-bold my-4 ">
+          <h1 className="text-center text-4xl font-bold my-4 text-white ">
             Manage Recipes
           </h1>
 
@@ -96,7 +97,7 @@ const UserRecipes = () => {
                   </tbody>
                 </table>
                 <ul className="flex mt-6 ">
-                  <li className="px-2 text-xl">
+                  <li className="px-2 text-xl text-white">
                     <button onClick={previousPage}>Previous</button>
                   </li>
                   {numbers.map((n, id) => (
@@ -108,13 +109,20 @@ const UserRecipes = () => {
                       <button onClick={() => changeCurrentPage(n)}>{n}</button>
                     </li>
                   ))}
-                  <li className="px-2 text-xl">
+                  <li className="px-2 text-xl text-white">
                     <button onClick={nextPage}>Next</button>
                   </li>
                 </ul>
               </>
             ) : (
-              <h1 className="text-4xl ">Add Recipes Now</h1>
+              <div className="bg-white p-8 rounded-lg">
+                <div>
+                  <img src={foodPic} alt="food pic" className="w-60" />
+                </div>
+                <h1 className="font-semibold">
+                  You have no recipe yet. Add some today!
+                </h1>
+              </div>
             )}
           </div>
         </div>

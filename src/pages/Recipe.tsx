@@ -7,7 +7,7 @@ import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { useReactToPrint } from "react-to-print";
 
 const Recipe = () => {
-  const [username, setUsername] = useState(null);
+  const [name, setName] = useState("");
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [ingredients, setingredients] = useState([]);
@@ -30,25 +30,31 @@ const Recipe = () => {
         console.log(response);
         const data = response.data;
 
-        const {
-          username,
-          title,
-          description,
-          ingredients,
-          instructions,
-          photo,
-        } = data;
+        const { name, title, description, ingredients, instructions, photo } =
+          data;
+
         const ingredientsList = ingredients
           .split(",")
           .map((item: string) => item.trim());
 
-        setUsername(username);
+        setName(name);
         setTitle(title);
         setDescription(description);
         setingredients(ingredientsList);
         setInstructions(instructions);
         setPhoto(photo);
       });
+  };
+
+  // this will split the user's name. each first letter of first name and last name will be capitalized
+  const capitalizedName = () => {
+    const splitName = name.split(" ");
+    let x = [];
+
+    for (let i = 0; i < splitName.length; i++) {
+      x[i] = splitName[i].charAt(0).toUpperCase() + splitName[i].slice(1);
+    }
+    return x.join(" ");
   };
 
   const handlePrint = useReactToPrint({
@@ -65,7 +71,9 @@ const Recipe = () => {
             <div className="mb-4 pt-8">
               <h1 className="text-4xl font-bold mb-4">{title}</h1>
 
-              <h2 className="text-xl font-semibold">Posted by : @{username}</h2>
+              <h2 className="text-xl font-semibold">
+                Posted by : {capitalizedName()}
+              </h2>
             </div>
             {photo && (
               // a photo will be fetched from the database

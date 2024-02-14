@@ -1,108 +1,144 @@
-import wallpaper from "../assets/bg-3.jpg";
-import logo from "../assets/cookbook_logo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
-  const {
-    msg,
-    error,
-    disable,
-    handleChange,
-    handleRegistration,
-    checkEmail,
-    checkUsername,
-  } = useContext(UserContext);
+  const { msg, error, handleChange, handleRegistration, checkEmail } =
+    useContext(UserContext);
+  const [click, setClick] = useState(false);
+  const [confirmClick, setConfirmClick] = useState(false);
+
+  const togglePassword = () => {
+    setClick((prev) => !prev);
+  };
+  const toggleConfirmPassword = () => {
+    setConfirmClick((prev) => !prev);
+  };
 
   return (
-    <div className="md:flex items-center justify-center min-h-screen">
-      <div
-        className="bg-cover bg-center min-h-screen basis-1/2 w-100 relative"
-        style={{
-          backgroundImage: `url(${wallpaper})`,
-        }}>
-        <div className="absolute text-center right-0 top-0 left-0 bottom-0 flex justify-center items-center">
-          <h1 className=" text-white  font-serif text-6xl w-3/4 drop-shadow-lg mb-52">
-            "Everyone can COOK"
-          </h1>
-        </div>
-      </div>
-      <div className="basis-1/2 bg-gray-300 min-h-screen flex flex-col items-center justify-center w-full">
-        <div className="flex flex-col items-center justify-center">
-          <img src={logo} alt="logo" width={150} height={150} />
-          <h1 className="text-4xl font-bold">Register</h1>
-          <p>Fill all the fields below</p>
-        </div>
+    <div className="flex items-center justify-center min-h-screen flex-col  bg-auth-wallpaper bg-fixed bg-center bg-cover ">
+      <div className=" bg-white  w-96 shadow-md rounded-md">
+        <h1 className="text-2xl py-4 text-center font-bold">
+          Please Register Here
+        </h1>
 
         <form
-          onSubmit={handleRegistration}
-          className=" text-center w-full  pt-12">
-          <p>
-            {msg !== "" ? (
-              <span className="text-green-700 text-2xl">{msg}</span>
+          className="flex items-center justify-center flex-col py-4"
+          onSubmit={handleRegistration}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={handleChange}
+              className=" bg-gray-200 text-lg py-2 w-72 rounded-lg"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              onBlur={checkEmail}
+              className=" bg-gray-200 text-lg py-2 w-72 rounded-lg"
+            />
+          </div>
+          <div className="mb-4 relative">
+            <label htmlFor="password" className="block">
+              Password
+            </label>
+            <input
+              type={`${click ? "text" : "password"}`}
+              name="password"
+              id="password"
+              onChange={handleChange}
+              className=" bg-gray-200 text-lg py-2 w-72 rounded-lg "
+            />
+
+            {click ? (
+              <FontAwesomeIcon
+                icon={faEye}
+                onClick={togglePassword}
+                className={`absolute right-2 bottom-4 text-xl cursor-pointer`}
+              />
             ) : (
-              <span className="text-red-700 text-md font-semibold text-xl">
+              <FontAwesomeIcon
+                icon={faEyeSlash}
+                onClick={togglePassword}
+                className={`absolute right-2 bottom-4 text-xl cursor-pointer`}
+              />
+            )}
+          </div>
+          <div className="mb-4 relative">
+            <label htmlFor="confirm_password" className="block">
+              Confirm Password
+            </label>
+            <input
+              type={`${confirmClick ? "text" : "password"}`}
+              name="confirm_password"
+              id="confirm_password"
+              onChange={handleChange}
+              className=" bg-gray-200 text-lg py-2 w-72 rounded-lg"
+            />
+
+            {confirmClick ? (
+              <FontAwesomeIcon
+                icon={faEye}
+                onClick={toggleConfirmPassword}
+                className={`absolute right-2 bottom-4 text-xl cursor-pointer`}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faEyeSlash}
+                onClick={toggleConfirmPassword}
+                className={`absolute right-2 bottom-4 text-xl cursor-pointer`}
+              />
+            )}
+          </div>
+          <p className="mx-auto text-center py-2">
+            {msg !== "" ? (
+              <span className="text-green-700">{msg}</span>
+            ) : (
+              <span className="text-red-700 text-md font-semibold">
                 {error}
               </span>
             )}
           </p>
-          <div className="my-2">
-            <input
-              className="py-2.5 px-2  w-3/6  rounded-lg bg-white"
-              type="text"
-              placeholder="Name..."
-              name="name"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="my-2">
-            <input
-              className="py-2.5 px-2 w-3/6 rounded-lg bg-white"
-              type="text"
-              placeholder="Username..."
-              name="username"
-              onChange={handleChange}
-              onBlur={checkUsername}
-            />
-          </div>
-          <div className="my-2">
-            <input
-              className="py-2.5 px-2 w-3/6 rounded-lg bg-white"
-              type="email"
-              placeholder="Email..."
-              name="email"
-              onChange={handleChange}
-              onBlur={checkEmail}
-            />
-          </div>
-          <div className="my-2">
-            <input
-              className="py-2.5 px-2 w-3/6  rounded-lg bg-white"
-              type="password"
-              placeholder="Password..."
-              name="password"
-              onChange={handleChange}
-            />
-            <small className="block text-xs">
-              (Password must be 8 characters long with Uppercase , lowercase,
-              and special characters)
+          {/* <div className="flex items-center justify-center mx-auto flex-col w-64">
+            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
+              *error
             </small>
-          </div>
-
-          <input
+            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
+              *error
+            </small>
+            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
+              *error
+            </small>
+            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
+              *error
+            </small>
+          </div> */}
+          <button
             type="submit"
-            className="cursor-pointer bg-red-500 hover:bg-red-700 duration-500 ease-in-out px-8 rounded-md py-2 text-white my-4"
-            disabled={disable}
-            value="Sign Up"
-          />
+            className=" bg-red-500 hover:bg-red-800 text-white px-5 py-1 rounded-lg">
+            Register
+          </button>
+          <p className="text-center w-full py-2">
+            Already Have an account? go 👉
+            <Link to="/" className="text-blue underline">
+              Log In
+            </Link>
+          </p>
         </form>
-        <span>
-          Have an account? Please Login{" "}
-          <Link className="text-blue-700" to="/">
-            Here
-          </Link>
-        </span>
       </div>
     </div>
   );

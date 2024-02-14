@@ -9,7 +9,7 @@ export type RecipeProps = {
   id: number;
   title: string;
   photo: string;
-  username: string;
+  name: string;
   created_at: Date;
 };
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
       {recipesFetchLoading ? (
         <div className="flex flex-col items-center justify-center w-full min-h-screen">
-          <h1 className=" text-4xl font-extrabold">
+          <h1 className=" text-4xl font-extrabold text-white">
             Fetching All Recipes. Please Wait...{" "}
           </h1>
           <span className="mx-auto mt-4">
@@ -39,9 +39,9 @@ const Dashboard = () => {
           </span>
         </div>
       ) : (
-        <div className="w-full min-h-screen bg-neutral-200">
+        <div className="w-full min-h-screen">
           <div className="w-full text-center py-5">
-            <h2 className="text-4xl font-bold"> All Recipes</h2>
+            <h2 className="text-4xl font-bold text-white"> All Recipes</h2>
           </div>
 
           <div className="w-full flex flex-wrap items-center justify-center gap-6 px-8">

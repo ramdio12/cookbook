@@ -1,19 +1,16 @@
 import { RecipeProps } from "../pages/Dashboard";
 import { useNavigate } from "react-router-dom";
 
-const RecipeCard = ({
-  id,
-  title,
-  photo,
-  username,
-  created_at,
-}: RecipeProps) => {
+const RecipeCard = ({ id, title, photo, name, created_at }: RecipeProps) => {
   const navigate = useNavigate();
   const date: Date = new Date();
   const publishDate: Date = new Date(created_at);
   const dateDifference = Math.abs(publishDate.getTime() - date.getTime());
   const daysPassed = Math.ceil(dateDifference / (1000 * 60 * 60 * 24));
   const day = daysPassed - 1;
+  const firstName = name?.split(" ");
+  const modifiedFirstName =
+    firstName[0].charAt(0).toUpperCase() + firstName[0].substring(1);
 
   return (
     <div
@@ -30,7 +27,7 @@ const RecipeCard = ({
       <div className="w-full text-center bg-white py-2">
         <h1 className="text-xl font-semibold">{title}</h1>
 
-        <p className=" text-base font-semibold">@{username}</p>
+        <p className=" text-base font-semibold">@{modifiedFirstName}</p>
         {day === 0 ? (
           <p>Posted Today</p>
         ) : (

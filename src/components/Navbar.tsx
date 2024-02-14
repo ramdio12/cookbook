@@ -14,15 +14,17 @@ import {
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string | null>("");
+  const [usersname, setUsersName] = useState<string | null>("");
   const [display, setDisplay] = useState("hidden");
-
   const [dropDown, setDropDown] = useState(false);
 
   useEffect(() => {
-    const uname = localStorage.getItem("username");
-    setUsername(uname);
+    const name = localStorage.getItem("name");
+    setUsersName(name);
   }, []);
+
+  const name: any = usersname?.split(" ");
+  const capitalizeName = name[0].charAt(0).toUpperCase() + name[0].substring(1);
 
   const dropDownClick = () => {
     setDropDown((prev) => !prev);
@@ -45,7 +47,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="flex items-center justify-between bg-orange-800 w-full p-4 text-white font-bold relative">
+    <header
+      className={`flex items-center justify-between bg-orange-800 w-full p-4 text-white font-bold relative`}>
       <div className="flex justify-center items-center">
         <img
           src={logo}
@@ -72,7 +75,7 @@ const Navbar: React.FC = () => {
       <div className="hidden md:flex items-center justify-center">
         <div className="flex items-center justify-center flex-col relative">
           <div>
-            <span className=" mr-2 text-xl">Hi {username}</span>
+            <span className=" mr-2 text-xl">Hi {capitalizeName}</span>
             {dropDown ? (
               <FontAwesomeIcon
                 icon={faCircleChevronUp}
@@ -85,20 +88,15 @@ const Navbar: React.FC = () => {
                 onClick={dropDownClick}
                 className="text-2xl cursor-pointer"
               />
-              // <FontAwesomeIcon
-              //   icon={faAngleDown}
-              //   onClick={dropDownClick}
-              //   className="text-xl cursor-pointer"
-              // />
             )}
           </div>
           {dropDown && (
-            <div className="absolute top-12 bg-orange-800 w-28 px-2 z-50">
+            <div className="absolute top-12 bg-orange-800 w-60 px-2 z-50">
               <div>
                 <FontAwesomeIcon icon={faUser} className="mr-2" />
                 <Link
                   to="/profile"
-                  className="py-2 text-xl font-normal hover:text-yellow-400">
+                  className="py-6 text-xl font-normal hover:text-yellow-400">
                   Profile
                 </Link>
               </div>

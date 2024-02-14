@@ -18,8 +18,7 @@ type UserProps = {
   handleRegistration: (e: React.FormEvent<HTMLFormElement>) => void;
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   checkEmail: () => void;
-  checkUsername: () => void;
-  username: string | null;
+  name: string | null;
 };
 const UserContext = createContext({} as UserProps);
 

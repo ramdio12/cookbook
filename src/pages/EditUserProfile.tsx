@@ -77,8 +77,8 @@ const EditUserProfile = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center flex-col ">
-        <h1 className="text-4xl py-12">Edit your profile</h1>
+      <div className="flex items-center  flex-col min-h-screen">
+        <h1 className="text-4xl py-12 text-white">Edit your profile</h1>
 
         <div className="text-center bg-white px-16 py-4 rounded-md shadow-md">
           <form onSubmit={handleUpdateProfile}>

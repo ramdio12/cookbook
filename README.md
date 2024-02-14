@@ -42,14 +42,17 @@ This is my github link for all PHP files that I used for the project's backend
 
 - A page where all of the users' recipes will be displayed. With the help of React Query, I can display data even without using useEffect Hook
 
-### MY PROFILE (WITH USER'S RECIPE DASHBOARD)
+### MY RECIPES
 
 - The specific user's recipe will only be displayed in table form, where they can either view or edit the recipe
-- Along with the recipes, it also have the user's profile beside it. They can either change profile photo or edit their information
 
 ### ADD RECIPE
 
 - It is only a form where a user can add recipes to be displayed on home page
+
+### PROFILE
+
+- This page has the user's Info
 
 ## Challenges
 
@@ -76,31 +79,35 @@ There are lots of things that I needed to improve in this project it includes:
 
 ## Login
 
-![Alt text](/screenshots/login.JPG)<br>
+![Alt text](/screenshots/login_new.PNG)<br>
 
 ## Register
 
-![Alt text](/screenshots/register.JPG)<br>
+![Alt text](/screenshots/register_new.PNG)<br>
 
 ## Home Page
 
-![Alt text](/screenshots/homepage.JPG)<br>
+![Alt text](/screenshots/dashboard_new.PNG)<br>
 
-## User's Recipe List and Profile
+## User's Recipe List
 
-![Alt text](/screenshots/users_recipelist_and_profile.JPG)<br>
+![Alt text](/screenshots/userrecipes_new.PNG)<br>
+
+## Profile Page
+
+![Alt text](/screenshots/userprofile_new.PNG)<br>
 
 ## Update Profile
 
-![Alt text](/screenshots/update_profile.JPG)<br>
+![Alt text](/screenshots/updateprofile_new.PNG)<br>
 
 ## Update Recipe
 
-![Alt text](/screenshots/update_recipe.JPG)<br>
+![Alt text](/screenshots/editrecipe_new.PNG)<br>
 
 ## Add Recipe
 
-![Alt text](/screenshots/add_recipe.JPG)<br>
+![Alt text](/screenshots/addrecipe_new.PNG)<br>
 
 ## Before Exporting Recipe to PDF
 
