@@ -40,38 +40,43 @@ const AddRecipe = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://weebmarclone.000webhostapp.com/recipe_crud.php/";
+    // const url = "http://localhost/php_files/createAndGetRecipe.php/";
+    const url = "https://weebmarclone.000webhostapp.com/createAndGetRecipe.php";
     const { title, description, ingredients, instructions }: any = inputs;
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("ingredients", ingredients);
-    formData.append("instructions", instructions);
-    formData.append("users_id", userId);
-    formData.append("photo", photo);
+    if (!title && !description && !ingredients && !instructions && !photo) {
+      setError("Please Fill all the fields");
+    } else {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("ingredients", ingredients);
+      formData.append("instructions", instructions);
+      formData.append("users_id", userId);
+      formData.append("photo", photo);
 
-    try {
-      await axios
-        .post(url, formData, {
-          headers: {
-            Accept: "*",
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          if (response.data.status === "success") {
-            setMsg("Recipe Created");
-            setTimeout(() => {
-              navigate("/dashboard");
-            }, 3000);
-          } else {
-            setError(response.data.message);
-          }
-          console.log(response.data);
-        });
-    } catch (error) {
-      console.log(error);
+      try {
+        await axios
+          .post(url, formData, {
+            headers: {
+              Accept: "*",
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            if (response.data.success) {
+              setMsg(response.data.success);
+              setTimeout(() => {
+                navigate("/dashboard");
+              }, 3000);
+            } else {
+              setError(response.data.error);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     setInputs({});
@@ -105,19 +110,28 @@ const AddRecipe = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4 md:w-3/6 mx-auto">
+          <div className="mb-4 md:w-9/12 mx-auto">
             <label htmlFor="description" className="block text-2xl mb-2">
               Description
             </label>
-            <small>(How would you describe your dish?)</small>
-            <input
+            <small>
+              (You can also put the amount of servings of your recipe here)
+            </small>
+            {/* <input
               type="text"
               placeholder="Description..."
               name="description"
               id="description"
               className="py-2 w-full bg-slate-300 rounded-md"
               onChange={handleChange}
-            />
+            /> */}
+            <textarea
+              placeholder="Description..."
+              name="description"
+              id="description"
+              className="px-2 w-full resize-none bg-slate-300 rounded-md"
+              rows={8}
+              onChange={handleChange}></textarea>
           </div>
           <div className="mb-4 md:w-9/12 mx-auto">
             <label htmlFor="ingredients" className="block text-2xl mb-2">
@@ -165,7 +179,7 @@ const AddRecipe = () => {
           <input
             type="submit"
             value="SUBMIT"
-            className="text-md bg-red-600 px-6 py-2 text-white rounded-md cursor-pointer"
+            className="text-md bg-red-600 hover:bg-red-800 duration-500 ease-in-out px-6 py-2 text-white rounded-md cursor-pointer"
           />
         </form>
       </div>

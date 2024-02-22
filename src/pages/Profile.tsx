@@ -18,13 +18,14 @@ const Profile = () => {
   const myName = name?.split(" ");
 
   useEffect(() => {
-    getMyData();
+    getUserData();
   });
 
-  // get the users data to display it
-  async function getMyData() {
+  async function getUserData() {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${userId}`)
+      .get(
+        `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${userId}`
+      )
       .then(function (response) {
         setUserData(response.data);
       });
@@ -41,7 +42,8 @@ const Profile = () => {
     formData.set("photo", updatedPhoto);
     await axios
       .post(
-        `https://weebmarclone.000webhostapp.com/update_myprofile_photo.php/${userId}`,
+        // `http://localhost/php_files/updateUserProfilePhoto.php/${userId}`,
+        `https://weebmarclone.000webhostapp.com/updateUserProfilePhoto.php/${userId}`,
         formData,
         {
           headers: {
@@ -51,32 +53,16 @@ const Profile = () => {
         }
       )
       .then((response) => {
-        const status = response.data.status;
-        const message = response.data.message;
-
-        switch (status) {
-          case "large_file":
-            setError(message);
-            break;
-          case "incompatible":
-            setError(message);
-            break;
-          case "invalid":
-            setError(message);
-            break;
-          case "failed":
-            setError(message);
-            break;
-          case "success":
-            setMsg(response.data.message);
-            setTimeout(() => {
-              setMsg("");
-              window.location.reload();
-            }, 3000);
-            getMyData();
-            break;
-          default:
-            break;
+        console.log(response);
+        if (response.data.success) {
+          setMsg(response.data.success);
+          setTimeout(() => {
+            setMsg("");
+            window.location.reload();
+          }, 3000);
+          getUserData();
+        } else {
+          setError(response.data.error);
         }
       });
   };
@@ -94,6 +80,7 @@ const Profile = () => {
                   preview
                     ? preview
                     : `https://weebmarclone.000webhostapp.com/uploads/${photo}`
+                  // `http://localhost/php_files/user_uploads/${photo}`
                 }
                 className="w-40 h-40 mx-auto rounded-full"
               />

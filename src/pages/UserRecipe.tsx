@@ -26,7 +26,10 @@ const UserRecipe = () => {
   */
   const getMyrecipe = async () => {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
+      // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
+      .get(
+        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
+      )
       .then((response) => {
         const data = response.data;
         const { id, title, description, ingredients, instructions, photo } =
@@ -51,7 +54,8 @@ const UserRecipe = () => {
     formData.set("photo", updatedPhoto);
     await axios
       .post(
-        `https://weebmarclone.000webhostapp.com/update_recipe_photo.php/${id}`,
+        // `http://localhost/php_files/updateUserRecipePhoto.php/${id}`,
+        `https://weebmarclone.000webhostapp.com/updateUserRecipePhoto.php/${id}`,
         formData,
         {
           headers: {
@@ -61,30 +65,42 @@ const UserRecipe = () => {
         }
       )
       .then((response) => {
-        const status = response.data.status;
-        const message = response.data.message;
-        switch (status) {
-          case "large_file":
-            setError(message);
-            break;
-          case "incompatible":
-            setError(message);
-            break;
-          case "invalid":
-            setError(message);
-            break;
-          case "failed":
-            setError(message);
-            break;
-          case "success":
-            setMsg(response.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, 3000);
-            break;
-          default:
-            break;
+        console.log(response);
+        console.log(response.data);
+        if (response.data.success) {
+          setMsg(response.data.success);
+          setTimeout(() => {
+            setMsg("");
+            window.location.reload();
+          }, 3000);
+        } else {
+          setError(response.data.error);
         }
+
+        // const status = response.data.status;
+        // const message = response.data.message;
+        // switch (status) {
+        //   case "large_file":
+        //     setError(message);
+        //     break;
+        //   case "incompatible":
+        //     setError(message);
+        //     break;
+        //   case "invalid":
+        //     setError(message);
+        //     break;
+        //   case "failed":
+        //     setError(message);
+        //     break;
+        //   case "success":
+        //     setMsg(response.data.message);
+        //     setTimeout(() => {
+        //       window.location.reload();
+        //     }, 3000);
+        //     break;
+        //   default:
+        //     break;
+        // }
       });
   };
 
@@ -105,7 +121,8 @@ const UserRecipe = () => {
                     src={
                       preview
                         ? preview
-                        : `https://weebmarclone.000webhostapp.com/uploads/${photo}`
+                        : // : `http://localhost/php_files/recipe_uploads/${photo}`
+                          `https://weebmarclone.000webhostapp.com/uploads/${photo}`
                     }
                     className="w-full"
                   />

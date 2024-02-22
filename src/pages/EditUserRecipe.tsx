@@ -32,7 +32,10 @@ const EditUserRecipe = () => {
   // get the recipe of the user by id
   const getUserRecipe = async () => {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
+      // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
+      .get(
+        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
+      )
       .then((response) => {
         setInputs(response.data);
         setRecipeId(response.data.id);
@@ -43,7 +46,8 @@ const EditUserRecipe = () => {
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://weebmarclone.000webhostapp.com/update_my_recipe.php";
+    // const url = "http://localhost/php_files/userRecipes.php";
+    const url = "https://weebmarclone.000webhostapp.com/userRecipes.php";
     const { title, description, ingredients, instructions } = inputs;
 
     if (!title && !description && !ingredients && !instructions) {
@@ -57,14 +61,15 @@ const EditUserRecipe = () => {
       formData.append("instructions", instructions);
       try {
         await axios.post(url, formData).then((response) => {
-          const status = response.data.status;
-          if (status === "empty") {
-            setError(response.data.message);
-          } else {
-            setMsg("Edit data success. Reloading...");
+          console.log(response);
+          console.log(response.data);
+          if (response.data.success) {
+            setMsg(response.data.success);
             setTimeout(() => {
               navigate("/userrecipes");
             }, 3000);
+          } else {
+            setError(response.data.error);
           }
         });
       } catch (error: any) {
@@ -97,19 +102,18 @@ const EditUserRecipe = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4 md:w-3/6 mx-auto">
+          <div className="mb-4 md:w-9/12 mx-auto">
             <label htmlFor="description" className="block text-2xl mb-2">
               Description
             </label>
-            <input
-              type="text"
+            <textarea
               placeholder="Description..."
               name="description"
               id="description"
-              className="py-2 w-full bg-slate-300"
+              className="px-2 w-full resize-none bg-slate-300 rounded-md"
+              rows={8}
               value={inputs?.description || ""}
-              onChange={handleChange}
-            />
+              onChange={handleChange}></textarea>
           </div>
           <div className="mb-4 md:w-9/12 mx-auto">
             <label htmlFor="ingredients" className="block text-2xl mb-2">
@@ -148,7 +152,7 @@ const EditUserRecipe = () => {
           <input
             type="submit"
             value="SUBMIT"
-            className="text-md bg-red-600 px-6 py-2 text-white rounded-md cursor-pointer"
+            className="text-md bg-red-600 hover:bg-red-800 duration-300 ease-in-out px-6 py-2 text-white rounded-md cursor-pointer"
           />
         </form>
       </div>

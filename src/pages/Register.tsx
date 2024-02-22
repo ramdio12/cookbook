@@ -20,7 +20,7 @@ const Register = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen flex-col   bg-fixed bg-center bg-cover "
+      className="flex items-center justify-center min-h-screen flex-col bg-fixed bg-center bg-cover "
       style={{
         backgroundImage: `url(${wallpaper})`,
       }}>
@@ -118,20 +118,7 @@ const Register = () => {
               </span>
             )}
           </p>
-          {/* <div className="flex items-center justify-center mx-auto flex-col w-64">
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-          </div> */}
+
           <button
             type="submit"
             className=" bg-red-500 hover:bg-red-800 text-white px-5 py-1 rounded-lg">

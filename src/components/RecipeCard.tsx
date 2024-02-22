@@ -19,6 +19,7 @@ const RecipeCard = ({ id, title, photo, name, created_at }: RecipeProps) => {
       onClick={() => navigate(`/recipe/${id}/recipe`)}>
       <div className=" md:w-72 md:h-56">
         <img
+          // src={`http://localhost/php_files/recipe_uploads/${photo}`}
           src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
           className="w-full h-full"
         />

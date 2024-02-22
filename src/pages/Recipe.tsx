@@ -25,11 +25,12 @@ const Recipe = () => {
   // a specific recipe will be displayed
   const getRecipe = async () => {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/recipe_crud.php?id=${id}`)
+      // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
+      .get(
+        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
+      )
       .then((response) => {
-        console.log(response);
         const data = response.data;
-
         const { name, title, description, ingredients, instructions, photo } =
           data;
 
@@ -78,6 +79,7 @@ const Recipe = () => {
             {photo && (
               // a photo will be fetched from the database
               <img
+                // src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
                 src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
                 className="md:w-2/4 mx-auto"
               />

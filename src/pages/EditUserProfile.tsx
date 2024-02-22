@@ -31,7 +31,9 @@ const EditUserProfile = () => {
   // fetch users data
   const getUserData = async () => {
     await axios
-      .get(`https://weebmarclone.000webhostapp.com/my_data.php?id=${id}`)
+      .get(
+        `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${id}`
+      )
       .then(function (response) {
         setUserId(response.data.id);
         setInputs(response.data);
@@ -41,28 +43,27 @@ const EditUserProfile = () => {
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://weebmarclone.000webhostapp.com/my_data.php";
-    const { name, username, email } = inputs;
+    const url = "https://weebmarclone.000webhostapp.com/updateAndGetUser.php";
+    const { name, email } = inputs;
 
     console.log(inputs);
 
-    if (!name && !username && !email) {
+    if (!name && !email) {
       setError("Some of the fields are not filled");
     } else {
       const formData = new FormData();
       formData.append("id", userId);
       formData.append("name", name);
-      formData.append("username", username);
       formData.append("email", email);
 
       try {
         await axios.post(url, formData).then((response) => {
           const status = response.data.status;
+          console.log(response);
           if (status === "empty") {
             setError(response.data.message);
           } else {
-            localStorage.setItem("username", username);
-            setMsg("Edit data success. Reloading...");
+            setMsg(response.data.success);
             setTimeout(() => {
               navigate("/userrecipes");
             }, 3000);
@@ -95,19 +96,7 @@ const EditUserProfile = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="username" className="block text-2xl mb-2">
-                Username
-              </label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                className="pl-2 py-2 w-64 text-lg rounded-md bg-slate-300"
-                value={inputs?.username || ""}
-                onChange={handleChange}
-              />
-            </div>
+
             <div className="mb-4 ">
               <label htmlFor="email" className="block text-2xl mb-2">
                 Email
@@ -119,6 +108,19 @@ const EditUserProfile = () => {
                 className="pl-2 py-2 w-64 text-lg rounded-md bg-slate-300"
                 value={inputs?.email || ""}
                 onChange={handleChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="username" className="block text-2xl mb-2">
+                Password
+              </label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                className="pl-2 py-2 w-64 text-lg rounded-md bg-slate-600 text-white"
+                value="Will be available soon"
+                disabled
               />
             </div>
             <p className=" mb-4">

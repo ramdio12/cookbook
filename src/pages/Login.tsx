@@ -92,20 +92,7 @@ const Login = () => {
               <span className="text-red-700 text-2xl">{error}</span>
             )}
           </p>
-          {/* <div className="flex items-center justify-center mx-auto flex-col w-64">
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-            <small className="text-red-500  text-sm w-full text-center py-1 font-semibold">
-              *error
-            </small>
-          </div> */}
+
           <button
             type="submit"
             className=" bg-red-500 hover:bg-red-800 text-white px-5 py-1 rounded-lg">

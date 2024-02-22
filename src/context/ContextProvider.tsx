@@ -25,8 +25,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [inputs, setInputs] = useState<Inputs>({});
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
-  const [disable, setDisable] = useState(false);
-  const [isDuplicate, setIsDuplicate] = useState(false);
   const navigate = useNavigate();
 
   /*
@@ -66,8 +64,9 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setDisable(true);
-    const url = "https://weebmarclone.000webhostapp.com/register.php";
+
+    // const url = "http://localhost/php_files/registerUser.php";
+    const url = "https://weebmarclone.000webhostapp.com/registerUser.php";
     const { name, confirm_password, email, password }: any = inputs;
 
     if (!name || !confirm_password || !email || !password) {
@@ -82,7 +81,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             setInputs({});
@@ -90,8 +88,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
               navigate("/");
             }, 5000);
           } else {
-            console.log(response.data.error);
-            console.log(response);
             setError(response.data.error);
           }
         });
@@ -99,8 +95,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         console.log(error.message);
       }
     }
-
-    setDisable(false);
   };
 
   /*
@@ -114,39 +108,18 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     await axios
       .post("https://weebmarclone.000webhostapp.com/check_email.php", formData)
       .then((response) => {
-        if (response.data.status === "duplicate") {
-          setError(response.data.message);
-          setIsDuplicate(true);
-        } else {
-          setIsDuplicate(false);
+        if (response.data.error) {
+          setError(response.data.error);
         }
       });
   };
-
-  // const checkUsername = async () => {
-  //   const { username }: any = inputs;
-  //   const formData = new FormData();
-  //   formData.append("username", username);
-  //   await axios
-  //     .post(
-  //       "https://weebmarclone.000webhostapp.com/check_username.php",
-  //       formData
-  //     )
-  //     .then((response) => {
-  //       if (response.data.status === "duplicate") {
-  //         setError(response.data.message);
-  //         setIsDuplicate(true);
-  //       } else {
-  //         setIsDuplicate(false);
-  //       }
-  //     });
-  // };
 
   /*LOGIN FUNCTION*/
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const url = "https://weebmarclone.000webhostapp.com/login.php";
+    // const url = "http://localhost/php_files/loginUser.php";
+    const url = "https://weebmarclone.000webhostapp.com/loginUser.php";
     const { email, password }: any = inputs;
 
     if (!email && !password) {
@@ -158,7 +131,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
@@ -171,8 +143,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
               localStorage.setItem("login", "logged");
               navigate("/dashboard");
             }, 5000);
-            console.log(userId);
-            console.log(usersname);
           } else {
             setError(response.data.error);
           }
@@ -198,7 +168,8 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     queryKey: ["recipe"],
     queryFn: async () =>
       await axios
-        .get(`https://weebmarclone.000webhostapp.com/get_all_user_recipes.php`)
+        // .get(`http://localhost/php_files/allRecipes.php`)
+        .get(`https://weebmarclone.000webhostapp.com/allRecipes.php`)
         .then((response) => {
           return response.data;
         }),
@@ -227,8 +198,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         recipesFetchLoading,
         msg,
         error,
-        disable,
-        isDuplicate,
         userId,
         name,
         // FUNCTION CONTEXTS

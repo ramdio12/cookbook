@@ -28,8 +28,9 @@ const UserRecipes = () => {
   */
   async function getUserRecipe(userId: number) {
     await axios
+      // .get(`http://localhost/php_files/userRecipes.php?users_id=${userId}`)
       .get(
-        `https://weebmarclone.000webhostapp.com/user_recipe.php?users_id=${userId}`
+        `https://weebmarclone.000webhostapp.com/userRecipes.php?users_id=${userId}`
       )
       .then(function (response) {
         setUserRecipe(response.data);

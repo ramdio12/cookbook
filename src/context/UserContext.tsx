@@ -10,8 +10,6 @@ type UserProps = {
   recipes: never[];
   failFetch: Error;
   recipesFetchLoading: boolean;
-  disable: boolean;
-  isDuplicate: boolean;
   userId: number | null;
   setError: (a: string) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
