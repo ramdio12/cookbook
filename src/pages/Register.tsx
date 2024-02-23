@@ -88,7 +88,7 @@ const Register = () => {
             </label>
             <input
               type={`${confirmClick ? "text" : "password"}`}
-              name="Confirm Password"
+              name="confirm_password"
               id="confirm_password"
               onChange={handleChange}
               className=" bg-gray-200 text-lg py-2 w-72 rounded-lg"

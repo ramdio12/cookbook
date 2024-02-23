@@ -47,7 +47,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (value.trim() === "") {
+    if (value === "") {
       setError(`${name} is empty!`);
     } else {
       setError("");
