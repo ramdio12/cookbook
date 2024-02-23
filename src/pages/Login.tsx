@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

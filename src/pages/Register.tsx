@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import wallpaper from "../assets/wallpaper2.jpg";
