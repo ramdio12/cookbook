@@ -83,13 +83,13 @@ const Register = () => {
               />
             )}
           </div>
-          <div className="mb-4 relative">
+          <div className="mb-1 relative">
             <label htmlFor="confirm_password" className="block">
               Confirm Password
             </label>
             <input
               type={`${confirmClick ? "text" : "password"}`}
-              name="confirm_password"
+              name="Confirm Password"
               id="confirm_password"
               onChange={handleChange}
               className=" bg-gray-200 text-lg py-2 w-72 rounded-lg"
@@ -109,6 +109,10 @@ const Register = () => {
               />
             )}
           </div>
+          <small className="text-center">
+            Password must have at least 8 characters
+          </small>
+
           <p className="mx-auto text-center py-2">
             {msg !== "" ? (
               <span className="text-green-700">{msg}</span>
@@ -121,14 +125,17 @@ const Register = () => {
 
           <button
             type="submit"
-            className=" bg-red-500 hover:bg-red-800 text-white px-5 py-1 rounded-lg">
-            Register
+            className=" bg-red-500 hover:bg-red-800 text-white px-7 py-2 text-md rounded-lg">
+            REGISTER
           </button>
           <p className="text-center w-full py-2">
             Already Have an account? go 👉
-            <Link to="/" className="text-blue underline">
+            {/* <Link to="/" className="text-blue underline">
               Log In
-            </Link>
+            </Link> */}
+            <a href="/" className="text-blue underline ml-2">
+              Log In
+            </a>
           </p>
         </form>
       </div>

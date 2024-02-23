@@ -61,7 +61,7 @@ This is my github link for all PHP files that I used for the project's backend
 
 ## Features to be added in the future or needed to improve
 
-There are lots of things that I needed to improve in this project it includes:
+There are still flaws on my project and lots of things that I needed to improve in this project it includes:
 
 - Adding DELETE button
 - Password changer

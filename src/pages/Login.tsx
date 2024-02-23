@@ -87,22 +87,25 @@ const Login = () => {
           </Link> */}
           <p className="text-center w-full py-2">
             {msg !== "" ? (
-              <span className="text-green-700 text-2xl">{msg}</span>
+              <span className="text-green-700 text-md">{msg}</span>
             ) : (
-              <span className="text-red-700 text-2xl">{error}</span>
+              <span className="text-red-700 text-md">{error}</span>
             )}
           </p>
 
           <button
             type="submit"
-            className=" bg-red-500 hover:bg-red-800 text-white px-5 py-1 rounded-lg">
-            Login
+            className=" bg-red-500 hover:bg-red-800 text-white px-7 py-2 text-md rounded-lg">
+            LOGIN
           </button>
           <p className="text-xl mt-2">
             No account? Register
-            <Link to="/register" className="underline text-blue-700 ml-2">
+            {/* <Link to="/register" className="underline text-blue-700 ml-2">
               Here
-            </Link>
+            </Link> */}
+            <a href="/register" className="text-blue underline ml-2">
+              Here
+            </a>
           </p>
         </form>
       </div>
