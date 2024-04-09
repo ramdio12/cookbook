@@ -25,25 +25,30 @@ const UserRecipe = () => {
   At the user's profile page, they can access their all recipes that has been made
   */
   const getMyrecipe = async () => {
-    await axios
-      // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
-      .get(
-        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
-      )
-      .then((response) => {
-        const data = response.data;
-        const { id, title, description, ingredients, instructions, photo } =
-          data;
-        const ingredientsList = ingredients
-          .split(",")
-          .map((item: string) => item.trim());
-        setRecipeId(id);
-        setTitle(title);
-        setDescription(description);
-        setingredients(ingredientsList);
-        setInstructions(instructions);
-        setPhoto(photo);
-      });
+    try {
+      await axios
+        // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
+        .get(
+          `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
+        )
+        .then((response) => {
+          console.log(response);
+          const data = response.data;
+          const { id, title, description, ingredients, instructions, photo } =
+            data;
+          const ingredientsList = ingredients
+            .split(",")
+            .map((item: string) => item.trim());
+          setRecipeId(id);
+          setTitle(title);
+          setDescription(description);
+          setingredients(ingredientsList);
+          setInstructions(instructions);
+          setPhoto(photo);
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // the can also update their recipe photo

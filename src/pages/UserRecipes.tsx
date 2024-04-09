@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import foodPic from "../assets/Food Service.png";
 
 const UserRecipes = () => {
@@ -27,14 +27,18 @@ const UserRecipes = () => {
   As the user visits their peofile page, they will also able to see their recipes
   */
   async function getUserRecipe(userId: number) {
-    await axios
-      // .get(`http://localhost/php_files/userRecipes.php?users_id=${userId}`)
-      .get(
-        `https://weebmarclone.000webhostapp.com/userRecipes.php?users_id=${userId}`
-      )
-      .then(function (response) {
-        setUserRecipe(response.data);
-      });
+    try {
+      await axios
+        // .get(`http://localhost/php_files/userRecipes.php?users_id=${userId}`)
+        .get(
+          `https://weebmarclone.000webhostapp.com/userRecipes.php?users_id=${userId}`
+        )
+        .then(function (response) {
+          setUserRecipe(response.data);
+        });
+    } catch (error) {
+      console.error("Fetching data error: " + error);
+    }
   }
 
   const previousPage = () => {
@@ -50,6 +54,22 @@ const UserRecipes = () => {
     if (currentPage !== npage) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const deleteRecipe = () => {
+    window.alert(`Delete Feature to be added soon`);
+    // try {
+    //   axios
+    //     .delete(
+    //       `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php/${id}/delete`
+    //       // `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
+    //     )
+    //     .then(function (response) {
+    //       console.log(response.data);
+    //     });
+    // } catch (error) {
+    //   console.error("Data deletion error: " + error);
+    // }
   };
 
   return (
@@ -77,7 +97,16 @@ const UserRecipes = () => {
                       <tr
                         key={id}
                         className="border-2 border-solid  divide-black">
-                        <td className="py-4 text-lg md:text-2xl">{title}</td>
+                        <td className="py-4 text-lg md:text-2xl">
+                          <button
+                            className=" hover:text-red-600 duration-300 ease-in-out"
+                            title="click to view recipes"
+                            onClick={() =>
+                              navigate(`/userrecipe/${id}/myrecipe`)
+                            }>
+                            {title}
+                          </button>
+                        </td>
                         <td className="py-4 md:text-xl">{created_at}</td>
                         <td className="flex pt-2 pr-2 gap-2 ">
                           <button
@@ -85,12 +114,18 @@ const UserRecipes = () => {
                             className=" p-2 w-full bg-sky-600 hover:bg-sky-800  text-white rounded-lg ">
                             <FontAwesomeIcon icon={faPenToSquare} /> Edit
                           </button>
-                          <button
+
+                          {/* <button
                             onClick={() =>
                               navigate(`/userrecipe/${id}/myrecipe`)
                             }
                             className=" p-2 w-full bg-green-500 hover:bg-green-800  text-white rounded-lg whitespace-nowrap">
                             <FontAwesomeIcon icon={faEye} /> Show
+                          </button> */}
+                          <button
+                            className=" p-2 w-full bg-red-600 hover:bg-red-800  text-white rounded-lg "
+                            onClick={() => deleteRecipe()}>
+                            <FontAwesomeIcon icon={faTrash} /> Delete
                           </button>
                         </td>
                       </tr>
@@ -126,6 +161,9 @@ const UserRecipes = () => {
               </div>
             )}
           </div>
+          <h1 className="text-white text-center">
+            Click the recipe title to show recipe details
+          </h1>
         </div>
       </div>
     </>

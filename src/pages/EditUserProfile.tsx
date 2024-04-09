@@ -30,14 +30,18 @@ const EditUserProfile = () => {
   };
   // fetch users data
   const getUserData = async () => {
-    await axios
-      .get(
-        `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${id}`
-      )
-      .then(function (response) {
-        setUserId(response.data.id);
-        setInputs(response.data);
-      });
+    try {
+      await axios
+        .get(
+          `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${id}`
+        )
+        .then(function (response) {
+          setUserId(response.data.id);
+          setInputs(response.data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
   // the inputs will be sent to the database if there are no errors
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {

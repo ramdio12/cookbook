@@ -26,7 +26,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
-
+  const url = "https://weebmarclone.000webhostapp.com/";
   /*
   Fetching all data from localStorage such as login,loginStatus and user's id
 */
@@ -131,6 +131,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
+          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
@@ -200,6 +201,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         error,
         userId,
         name,
+        url,
         // FUNCTION CONTEXTS
         toggle,
         handleFileChange,
