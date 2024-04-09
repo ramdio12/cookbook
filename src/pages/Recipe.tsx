@@ -81,7 +81,7 @@ const Recipe = () => {
               <img
                 // src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
                 src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
-                className="md:w-2/4 mx-auto"
+                className="md:w-2/4 mx-auto shadow-lg rounded-md overflow-hidden"
               />
             )}
           </div>

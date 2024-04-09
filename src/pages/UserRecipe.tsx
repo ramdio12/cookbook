@@ -120,7 +120,7 @@ const UserRecipe = () => {
             </div>
             <div>
               <noscript>md:w-3/6</noscript>
-              <div className=" w-5/6 md:w-96 mx-auto">
+              <div className=" w-5/6 md:w-96 mx-auto shadow-lg rounded-md overflow-hidden">
                 {photo && (
                   <img
                     src={
@@ -129,7 +129,7 @@ const UserRecipe = () => {
                         : // : `http://localhost/php_files/recipe_uploads/${photo}`
                           `https://weebmarclone.000webhostapp.com/uploads/${photo}`
                     }
-                    className="w-full"
+                    className="w-full "
                   />
                 )}
               </div>
