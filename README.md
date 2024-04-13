@@ -88,7 +88,7 @@ This is my github link for all PHP files that I used for the project's backend
 
 ## User's Recipe List
 
-![Alt text](/screenshots/MyRecipes.PNG)<br>
+![Alt text](/screenshots/MyRecipes.JPG)<br>
 
 ## Update Recipe
 
