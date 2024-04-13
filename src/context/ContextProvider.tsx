@@ -160,6 +160,8 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
   /*
  FUNCTION FOR FETCHING RECIPES MADE BY ALL USERS
+ This is also a practice area or preference for fetching all users data
+ We are Using Home.tsx Component instead of Dashboard.tsx Component for now
 */
   const {
     data: recipes,
@@ -169,7 +171,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     queryKey: ["recipe"],
     queryFn: async () =>
       await axios
-        // .get(`http://localhost/php_files/allRecipes.php`)
         .get(`https://weebmarclone.000webhostapp.com/allRecipes.php`)
         .then((response) => {
           return response.data;

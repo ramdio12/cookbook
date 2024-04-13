@@ -5,6 +5,11 @@ import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import ScrollToTop from "../components/ScrollToTop";
 
+/*
+
+This Page is for Preference and a practice area for using tanstack-query in which we can fetch data even without using useEffect Hook
+*/
+
 export type RecipeProps = {
   id: number;
   title: string;

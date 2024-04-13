@@ -18,7 +18,7 @@ const Login = () => {
   useEffect(() => {
     let login = localStorage.getItem("login");
     if (login) {
-      navigate("dashboard");
+      navigate("home");
     }
     let loginStatus = localStorage.getItem("loginStatus");
     if (loginStatus) {

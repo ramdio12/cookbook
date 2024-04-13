@@ -68,7 +68,7 @@ const AddRecipe = () => {
             if (response.data.success) {
               setMsg(response.data.success);
               setTimeout(() => {
-                navigate("/dashboard");
+                navigate("/home");
               }, 3000);
             } else {
               setError(response.data.error);

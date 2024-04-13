@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import Recipe from "./pages/Recipe";
 import Protected from "./pages/Protected";
 import Register from "./pages/Register";
@@ -13,6 +12,7 @@ import EditUserProfile from "./pages/EditUserProfile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
 function App() {
   const client = new QueryClient();
@@ -25,10 +25,6 @@ function App() {
             <Route index element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route
-              path="/dashboard"
-              element={<Protected Component={Dashboard} />}
-            />
-            <Route
               path="/recipe/:id/recipe"
               element={<Protected Component={Recipe} />}
             />
@@ -40,6 +36,7 @@ function App() {
               path="/addrecipe"
               element={<Protected Component={AddRecipe} />}
             />
+            <Route path="/home" element={<Protected Component={Home} />} />
             <Route
               path="/profile"
               element={<Protected Component={Profile} />}

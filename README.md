@@ -38,56 +38,29 @@ This is my github link for all PHP files that I used for the project's backend
 
 - The first page you will see is the authentication page, any attempt to enter the dashboard will be failed because the components are protected. You can register your credentials to the sign up page. If successful, you will be redirected to the login page
 
-### HOME SECTION (DASHBOARD)
-
-- A page where all of the users' recipes will be displayed. With the help of React Query, I can display data even without using useEffect Hook
-
-### MY RECIPES
-
-- The specific user's recipe will only be displayed in table form, where they can either view or edit the recipe
-
-### ADD RECIPE
-
-- It is only a form where a user can add recipes to be displayed on home page
-
-### PROFILE
-
-- This page has the user's Info, they can change the default profile pic or edit their info
-
-## Challenges
-
-    - Since PUT and DELETE METHOD is not supported on 000webhost for non premium users,  I used Axios.post for the update method. And as for the delete method , I replaced it with PDF export for now.
-    - Fetching with axios.get and useEffect could be troublesome sometimes, so I used useQuery at the homepage  to fetch all data. With useQuery, I was able to fetch all fresh data without refreshing the homepage.
-
-## Features to be added in the future or needed to improve
-
-There are still flaws on my project and lots of things that I needed to improve in this project it includes:
-
-- Adding DELETE button
-- Password changer
-- Make a better UI of my project
-- More stronger validation and security for Login and Registration
-- search bar and button
-- filtering for faster search (ex: by category or by date or by title)
-- Group by category (Example: pork,beef,fish,chicken or breakfast, lunch, snack, and dinner)
-- Need a better state management that handles Authentication and CRUD Functions aside from using ContextProvider
-- Add much more constraints of all data types in my code instead of using generic type "any"
-
-<br>
-<br>
-<br>
+## LOGIN PAGE
 
 ## Login
 
 ![Alt text](/screenshots/login_new.PNG)<br>
 
+## SIGNUP PAGE
+
 ## Register
 
 ![Alt text](/screenshots/register_new.PNG)<br>
 
+### HOME SECTION (HOME)
+
+- A page where all of the users' recipes will be displayed. It also has a search bar so you can look for a recipe with ease
+
 ## Home Page
 
-![Alt text](/screenshots/dashboard_new.PNG)<br>
+![Alt text](/screenshots/Home.JPG)<br>
+
+### RECIPE
+
+- Everyone who registered recipe can view the recipe's information when clicking one of it's recipe cards
 
 ## Recipe 1
 
@@ -97,9 +70,41 @@ There are still flaws on my project and lots of things that I needed to improve 
 
 ![Alt text](/screenshots/recipe_new2.PNG)<br>
 
+### Recipe Export
+
+-A user can also download someone's recipe to pdf
+
+## Before Exporting Recipe to PDF
+
+![Alt text](/screenshots/before_saving_recipe.JPG)<br>
+
+## After Exporting
+
+![Alt text](/screenshots/after_saving_recipe.JPG)<br>
+
+### MY RECIPES
+
+- The specific user's recipe will only be displayed in table form, where they can either delete (to be edited) or edit the recipe
+
 ## User's Recipe List
 
-![Alt text](/screenshots/userrecipes_new.PNG)<br>
+![Alt text](/screenshots/MyRecipes.PNG)<br>
+
+## Update Recipe
+
+![Alt text](/screenshots/editrecipe_new.PNG)<br>
+
+### ADD RECIPE
+
+- It is only a form where a user can add recipes to be displayed on home page
+
+## Add Recipe
+
+![Alt text](/screenshots/addrecipe_new.PNG)<br>
+
+### PROFILE
+
+- This page has the user's Info, they can change the default profile pic or edit their info
 
 ## Profile Page
 
@@ -109,18 +114,24 @@ There are still flaws on my project and lots of things that I needed to improve 
 
 ![Alt text](/screenshots/updateprofile_new.PNG)<br>
 
-## Update Recipe
+<br>
+<br>
+<br>
 
-![Alt text](/screenshots/editrecipe_new.PNG)<br>
+## Challenges
 
-## Add Recipe
+    - Since PUT and DELETE METHOD is not supported on 000webhost for non premium users,  I used Axios.post for the update method. And as for the delete method , I replaced it with PDF export for now.
+    - Fetching with axios.get and useEffect could be troublesome sometimes, so I tried to use tanstack query which it can fetch data without using useEffect. It's used on the dashboard component for practicing data fetching
 
-![Alt text](/screenshots/addrecipe_new.PNG)<br>
+## Features to be added in the future or needed to improve
 
-## Before Exporting Recipe to PDF
+There are still flaws on my project and lots of things that I needed to improve in this project it includes:
 
-![Alt text](/screenshots/before_saving_recipe.JPG)<br>
-
-## After Exporting
-
-![Alt text](/screenshots/after_saving_recipe.JPG)<br>
+- Adding DELETE button
+- Password changer
+- Make a better UI of my project
+- More stronger validation and security for Login and Registration
+- filtering for faster search (ex: by category or by date or by title)
+- Group by category (Example: pork,beef,fish,chicken or breakfast, lunch, snack, and dinner)
+- Need a better state management that handles Authentication and CRUD Functions aside from using ContextProvider
+- Add much more constraints of all data types in my code instead of using generic type "any"

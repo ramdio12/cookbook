@@ -55,14 +55,14 @@ const Navbar: React.FC = () => {
           alt="logo"
           width={50}
           height={120}
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/home")}
           className=" cursor-pointer"
         />
         <span className=" font-mono text-lg">CookBook</span>
       </div>
 
       <nav className="hidden md:flex gap-8">
-        <Link to="/dashboard" className="text-xl hover:text-yellow-400">
+        <Link to="/home" className="text-xl hover:text-yellow-400">
           Home
         </Link>
         <Link to="/userrecipes" className="text-xl hover:text-yellow-400">
@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
         />
         <nav className="flex flex-col mt-20 gap-4 mb-6 pl-6">
           <Link
-            to="/dashboard"
+            to="/home"
             className="text-2xl hover:text-amber-300"
             onClick={closeMenu}>
             Home
