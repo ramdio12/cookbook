@@ -142,7 +142,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
             setTimeout(() => {
               localStorage.setItem("login", "logged");
-              navigate("/dashboard");
+              navigate("/home");
             }, 5000);
           } else {
             setError(response.data.error);
