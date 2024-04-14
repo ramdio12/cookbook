@@ -20,6 +20,8 @@
 
 - The frontend is hosted on vercel while my PHP files for backend is hosted on 000webhost(hostinger)
 
+- I also used react-router-dom for routing across pages
+
 ## PHP FILE LOCATION
 
 This is my github link for all PHP files that I used for the project's backend

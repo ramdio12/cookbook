@@ -7,9 +7,9 @@ type UserProps = {
   msg: string;
   error: string;
   handleFileChange: (e: React.FormEvent) => void;
-  recipes: never[];
-  failFetch: Error;
-  recipesFetchLoading: boolean;
+  // recipes: never[];
+  // failFetch: Error;
+  // recipesFetchLoading: boolean;
   userId: number | null;
   setError: (a: string) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

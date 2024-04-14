@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import RecipeDataCard from "../components/RecipeDataCard";
+import errorImage from "../assets/error.png";
 
 export type RecipeProps = {
   id: number;
@@ -15,15 +16,20 @@ const Home: React.FC = () => {
   const [recipeName, setRecipeName] = useState("");
   const [recipeData, setRecipeData] = useState([]);
   const [error, setError] = useState("");
+  const [fetchError, setFetchError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getRecipe();
     cancelSearch();
-    return () => {};
+    return () => {
+      console.log(recipeData);
+    };
   }, []);
 
   const getRecipe = async () => {
     try {
+      setLoading(true);
       await axios
         .get(
           `https://weebmarclone.000webhostapp.com/searchRecipeByName.php?title=${recipeName}`
@@ -39,8 +45,11 @@ const Home: React.FC = () => {
             }, 3000);
           }
         });
-    } catch (error) {
-      console.error(error);
+      setLoading(false);
+    } catch (error: any) {
+      if (error.message) {
+        setFetchError("Fetching problem, please refresh");
+      }
     }
   };
 
@@ -56,13 +65,28 @@ const Home: React.FC = () => {
           setRecipeData(data);
         });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
+
+  if (fetchError) {
+    return (
+      <>
+        <Navbar />
+        <div className="flex items-center justify-center min-h-screen flex-col">
+          <img className=" w-60" src={errorImage} alt="" />
+          <h1 className="text-4xl font-bold">
+            Network error, try again later!
+          </h1>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <Navbar />
+
       <div className="mx-auto text-center my-4">
         <h1 className="text-5xl font-bold">Welcome to CookBook</h1>
         <p className=" my-2">Search for your desired recipes or make one</p>
@@ -98,13 +122,29 @@ const Home: React.FC = () => {
             <h1 className="text-red-800 text-2xl">{error}</h1>
           </div>
         )}
-
+        {loading && (
+          <div className="flex items-center justify-center">
+            <h1 className="text-2xl font-semibold">Loading...Please Wait!!!</h1>
+          </div>
+        )}
         <div className="w-full flex flex-wrap items-center justify-center gap-6 px-8 py-8">
           {recipeData.map((recipe: RecipeProps) => (
             <RecipeDataCard key={recipe.id} {...recipe} />
           ))}
         </div>
+        {/* {!fetchError ? (
+          <div className="w-full flex flex-wrap items-center justify-center gap-6 px-8 py-8">
+            {recipeData.map((recipe: RecipeProps) => (
+              <RecipeDataCard key={recipe.id} {...recipe} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full flex flex-wrap items-center justify-cente">
+            <h1 className="text-2xl text-black">{fetchError}</h1>
+          </div>
+        )} */}
       </div>
+
       <ScrollToTop />
     </>
   );

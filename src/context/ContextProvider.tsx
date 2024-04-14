@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect } from "react";
 import UserContext from "./UserContext";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 interface Inputs {
@@ -131,7 +131,6 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
-          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
@@ -163,20 +162,20 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
  This is also a practice area or preference for fetching all users data
  We are Using Home.tsx Component instead of Dashboard.tsx Component for now
 */
-  const {
-    data: recipes,
-    error: failFetch,
-    isLoading: recipesFetchLoading,
-  }: any = useQuery({
-    queryKey: ["recipe"],
-    queryFn: async () =>
-      await axios
-        .get(`https://weebmarclone.000webhostapp.com/allRecipes.php`)
-        .then((response) => {
-          return response.data;
-        }),
-    refetchInterval: 1000,
-  });
+  // const {
+  //   data: recipes,
+  //   error: failFetch,
+  //   isLoading: recipesFetchLoading,
+  // }: any = useQuery({
+  //   queryKey: ["recipe"],
+  //   queryFn: async () =>
+  //     await axios
+  //       .get(`https://weebmarclone.000webhostapp.com/allRecipes.php`)
+  //       .then((response) => {
+  //         return response.data;
+  //       }),
+  //   refetchInterval: 1000,
+  // });
 
   /*LOGIN FUNCTION*/
   const handleFileChange = (e: any) => {
@@ -195,9 +194,9 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         click,
         updatedPhoto,
         preview,
-        recipes,
-        failFetch,
-        recipesFetchLoading,
+        // recipes,
+        // failFetch,
+        // recipesFetchLoading,
         msg,
         error,
         userId,
