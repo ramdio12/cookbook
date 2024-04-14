@@ -1,5 +1,12 @@
-import { RecipeProps } from "../pages/Dashboard";
 import { useNavigate } from "react-router-dom";
+
+export type RecipeProps = {
+  id: number;
+  title: string;
+  photo: string;
+  name: string;
+  created_at: Date;
+};
 
 const RecipeCard = ({ id, title, photo, name, created_at }: RecipeProps) => {
   const navigate = useNavigate();
