@@ -9,6 +9,16 @@ const RecipeDataCard = ({ id, title, photo, created_at }: RecipeProps) => {
   const day = daysPassed - 1;
   const navigate = useNavigate();
 
+  const capitalizedTitle = () => {
+    const splitTitle = title.split(" ");
+    let x = [];
+
+    for (let i = 0; i < splitTitle.length; i++) {
+      x[i] = splitTitle[i].charAt(0).toUpperCase() + splitTitle[i].slice(1);
+    }
+    return x.join(" ");
+  };
+
   return (
     <div
       className="overflow-hidden rounded-md cursor-pointer hover:scale-105 duration-500 ease-in-out"
@@ -19,7 +29,7 @@ const RecipeDataCard = ({ id, title, photo, created_at }: RecipeProps) => {
           className="w-full h-full"
         />
       </div>
-      <h1 className="text-xl font-bold">{title}</h1>
+      <h1 className="text-xl font-bold">{capitalizedTitle()}</h1>
       {day === 0 ? (
         <p>Posted Today</p>
       ) : (
