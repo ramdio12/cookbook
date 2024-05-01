@@ -5,8 +5,11 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import foodPic from "../assets/Food Service.png";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const UserRecipes = () => {
+  const { baseUrl } = useContext(UserContext);
   const [userRecipe, setUserRecipe] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
@@ -30,9 +33,7 @@ const UserRecipes = () => {
     try {
       await axios
         // .get(`http://localhost/php_files/userRecipes.php?users_id=${userId}`)
-        .get(
-          `https://weebmarclone.000webhostapp.com/userRecipes.php?users_id=${userId}`
-        )
+        .get(`${baseUrl}userRecipes.php?users_id=${userId}`)
         .then(function (response) {
           setUserRecipe(response.data);
         });

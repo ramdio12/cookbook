@@ -5,8 +5,11 @@ import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { useReactToPrint } from "react-to-print";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const Recipe = () => {
+  const { baseUrl } = useContext(UserContext);
   const [name, setName] = useState("");
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
@@ -26,9 +29,7 @@ const Recipe = () => {
   const getRecipe = async () => {
     await axios
       // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
-      .get(
-        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
-      )
+      .get(`${baseUrl}createAndGetRecipe.php?id=${id}`)
       .then((response) => {
         const data = response.data;
         const { name, title, description, ingredients, instructions, photo } =
@@ -80,7 +81,7 @@ const Recipe = () => {
               // a photo will be fetched from the database
               <img
                 // src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
-                src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
+                src={`${baseUrl}uploads/${photo}`}
                 className="md:w-2/4 mx-auto shadow-lg rounded-md overflow-hidden"
               />
             )}

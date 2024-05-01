@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { RecipeProps } from "../pages/Home";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const RecipeDataCard = ({ id, title, photo, created_at }: RecipeProps) => {
+  const { baseUrl } = useContext(UserContext);
   const date: Date = new Date();
   const publishDate: Date = new Date(created_at);
   const dateDifference = Math.abs(publishDate.getTime() - date.getTime());
@@ -24,10 +27,7 @@ const RecipeDataCard = ({ id, title, photo, created_at }: RecipeProps) => {
       className="overflow-hidden rounded-md cursor-pointer hover:scale-105 duration-500 ease-in-out"
       onClick={() => navigate(`/recipe/${id}/recipe`)}>
       <div className=" md:w-72 md:h-56">
-        <img
-          src={`https://weebmarclone.000webhostapp.com/uploads/${photo}`}
-          className="w-full h-full"
-        />
+        <img src={`${baseUrl}uploads/${photo}`} className="w-full h-full" />
       </div>
       <h1 className="text-xl font-bold">{capitalizedTitle()}</h1>
       {day === 0 ? (

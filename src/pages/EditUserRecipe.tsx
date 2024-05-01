@@ -2,8 +2,11 @@ import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const EditUserRecipe = () => {
+  const { baseUrl } = useContext(UserContext);
   const navigate = useNavigate();
   const [inputs, setInputs]: any = useState([]);
   const [recipeId, setRecipeId]: any = useState(null);
@@ -33,9 +36,7 @@ const EditUserRecipe = () => {
   const getUserRecipe = async () => {
     await axios
       // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
-      .get(
-        `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
-      )
+      .get(`${baseUrl}createAndGetRecipe.php?id=${id}`)
       .then((response) => {
         setInputs(response.data);
         setRecipeId(response.data.id);
@@ -47,7 +48,7 @@ const EditUserRecipe = () => {
     e.preventDefault();
 
     // const url = "http://localhost/php_files/userRecipes.php";
-    const url = "https://weebmarclone.000webhostapp.com/userRecipes.php";
+    const url = `${baseUrl}userRecipes.php`;
     const { title, description, ingredients, instructions } = inputs;
 
     if (!title && !description && !ingredients && !instructions) {

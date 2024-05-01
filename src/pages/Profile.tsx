@@ -10,7 +10,7 @@ const Profile = () => {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   const [userData, setUserData] = useState({});
-  const { click, toggle, updatedPhoto, preview, handleFileChange } =
+  const { click, toggle, updatedPhoto, preview, handleFileChange, baseUrl } =
     useContext(UserRecipeContext);
   const navigate = useNavigate();
   const { userId }: any = useContext(UserContext);
@@ -23,9 +23,7 @@ const Profile = () => {
 
   async function getUserData() {
     await axios
-      .get(
-        `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${userId}`
-      )
+      .get(`${baseUrl}updateAndGetUser.php?id=${userId}`)
       .then(function (response) {
         setUserData(response.data);
       });
@@ -43,7 +41,7 @@ const Profile = () => {
     await axios
       .post(
         // `http://localhost/php_files/updateUserProfilePhoto.php/${userId}`,
-        `https://weebmarclone.000webhostapp.com/updateUserProfilePhoto.php/${userId}`,
+        `${baseUrl}updateUserProfilePhoto.php/${userId}`,
         formData,
         {
           headers: {
@@ -77,9 +75,7 @@ const Profile = () => {
             {photo ? (
               <img
                 src={
-                  preview
-                    ? preview
-                    : `https://weebmarclone.000webhostapp.com/uploads/${photo}`
+                  preview ? preview : `${baseUrl}uploads/${photo}`
                   // `http://localhost/php_files/user_uploads/${photo}`
                 }
                 className="w-40 h-40 mx-auto rounded-full"

@@ -26,7 +26,9 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
-  const url = "https://weebmarclone.000webhostapp.com/";
+  const baseUrl = "https://wannabecook.000webhostapp.com/";
+  // const baseUrl = "http://localhost/cookbook_infinityfree/";
+  // http://localhost/cookbook_infinityfree/
   /*
   Fetching all data from localStorage such as login,loginStatus and user's id
 */
@@ -65,8 +67,8 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // const url = "http://localhost/php_files/registerUser.php";
-    const url = "https://weebmarclone.000webhostapp.com/registerUser.php";
+    const url = `${baseUrl}registerUser.php`;
+    // const url = "https://wannabecook.000webhostapp.com/registerUser.php";
     const { name, confirm_password, email, password }: any = inputs;
 
     if (!name || !confirm_password || !email || !password) {
@@ -81,6 +83,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
+          console.log(response.data);
           if (response.data.success) {
             setMsg(response.data.success);
             setInputs({});
@@ -105,21 +108,19 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
     const formData = new FormData();
     formData.append("email", email);
 
-    await axios
-      .post("https://weebmarclone.000webhostapp.com/check_email.php", formData)
-      .then((response) => {
-        if (response.data.error) {
-          setError(response.data.error);
-        }
-      });
+    await axios.post(`${baseUrl}check_email.php`, formData).then((response) => {
+      if (response.data.error) {
+        setError(response.data.error);
+      }
+    });
   };
 
   /*LOGIN FUNCTION*/
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const url = "http://localhost/php_files/loginUser.php";
-    const url = "https://weebmarclone.000webhostapp.com/loginUser.php";
+    const url = `${baseUrl}loginUser.php`;
+    // const url = "https://wannabecook.000webhostapp.com/loginUser.php";
     const { email, password }: any = inputs;
 
     if (!email && !password) {
@@ -131,6 +132,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
 
       try {
         await axios.post(url, formData).then((response) => {
+          console.log(response);
           if (response.data.success) {
             setMsg(response.data.success);
             const userId = response.data.data.id;
@@ -201,7 +203,7 @@ const ContextProvider = ({ children }: RecipeContextProviderProps) => {
         error,
         userId,
         name,
-        url,
+        baseUrl,
         // FUNCTION CONTEXTS
         toggle,
         handleFileChange,

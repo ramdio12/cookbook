@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import UserContext from "../context/UserContext";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
@@ -13,6 +14,7 @@ export type RecipeProps = {
 };
 
 const Home: React.FC = () => {
+  const { baseUrl } = useContext(UserContext);
   const [recipeName, setRecipeName] = useState("");
   const [recipeData, setRecipeData] = useState([]);
   const [error, setError] = useState("");
@@ -31,11 +33,10 @@ const Home: React.FC = () => {
     try {
       setLoading(true);
       await axios
-        .get(
-          `https://weebmarclone.000webhostapp.com/searchRecipeByName.php?title=${recipeName}`
-        )
+        .get(`${baseUrl}SearchRecipeByTitle.php?title=${recipeName}`)
         .then((response) => {
           const data = response.data;
+          console.log(response.data);
           if (data) {
             setRecipeData(data);
           } else {
@@ -57,9 +58,7 @@ const Home: React.FC = () => {
     setRecipeName("");
     try {
       await axios
-        .get(
-          `https://weebmarclone.000webhostapp.com/searchRecipeByName.php?title=`
-        )
+        .get(`${baseUrl}SearchRecipeByTitle.php?title=`)
         .then((response) => {
           const data = response.data;
           setRecipeData(data);
@@ -127,11 +126,14 @@ const Home: React.FC = () => {
             <h1 className="text-2xl font-semibold">Loading...Please Wait!!!</h1>
           </div>
         )}
+
         <div className="w-full flex flex-wrap items-center justify-center gap-6 px-8 py-8">
-          {recipeData.map((recipe: RecipeProps) => (
-            <RecipeDataCard key={recipe.id} {...recipe} />
-          ))}
+          {recipeData &&
+            recipeData.map((recipe: RecipeProps) => (
+              <RecipeDataCard key={recipe.id} {...recipe} />
+            ))}
         </div>
+
         {/* {!fetchError ? (
           <div className="w-full flex flex-wrap items-center justify-center gap-6 px-8 py-8">
             {recipeData.map((recipe: RecipeProps) => (

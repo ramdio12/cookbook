@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const EditUserProfile = () => {
+  const { baseUrl } = useContext(UserContext);
   const [inputs, setInputs]: any = useState([]);
   const [userId, setUserId]: any = useState(null);
   const navigate = useNavigate();
@@ -32,9 +35,7 @@ const EditUserProfile = () => {
   const getUserData = async () => {
     try {
       await axios
-        .get(
-          `https://weebmarclone.000webhostapp.com/updateAndGetUser.php?id=${id}`
-        )
+        .get(`${baseUrl}updateAndGetUser.php?id=${id}`)
         .then(function (response) {
           setUserId(response.data.id);
           setInputs(response.data);
@@ -47,7 +48,7 @@ const EditUserProfile = () => {
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://weebmarclone.000webhostapp.com/updateAndGetUser.php";
+    const url = `${baseUrl}updateAndGetUser.php`;
     const { name, email } = inputs;
 
     console.log(inputs);

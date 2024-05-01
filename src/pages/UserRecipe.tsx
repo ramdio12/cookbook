@@ -13,7 +13,7 @@ const UserRecipe = () => {
   const [photo, setPhoto] = useState(null);
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
-  const { click, toggle, updatedPhoto, preview, handleFileChange } =
+  const { click, toggle, updatedPhoto, preview, handleFileChange, baseUrl } =
     useContext(UserRecipeContext);
   const { id } = useParams();
 
@@ -28,9 +28,7 @@ const UserRecipe = () => {
     try {
       await axios
         // .get(`http://localhost/php_files/createAndGetRecipe.php?id=${id}`)
-        .get(
-          `https://weebmarclone.000webhostapp.com/createAndGetRecipe.php?id=${id}`
-        )
+        .get(`${baseUrl}createAndGetRecipe.php?id=${id}`)
         .then((response) => {
           console.log(response);
           const data = response.data;
@@ -60,7 +58,7 @@ const UserRecipe = () => {
     await axios
       .post(
         // `http://localhost/php_files/updateUserRecipePhoto.php/${id}`,
-        `https://weebmarclone.000webhostapp.com/updateUserRecipePhoto.php/${id}`,
+        `${baseUrl}updateUserRecipePhoto.php/${id}`,
         formData,
         {
           headers: {
@@ -127,7 +125,7 @@ const UserRecipe = () => {
                       preview
                         ? preview
                         : // : `http://localhost/php_files/recipe_uploads/${photo}`
-                          `https://weebmarclone.000webhostapp.com/uploads/${photo}`
+                          `${baseUrl}uploads/${photo}`
                     }
                     className="w-full "
                   />
